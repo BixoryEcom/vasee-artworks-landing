@@ -5,7 +5,7 @@ import { Volume2, VolumeX } from "lucide-react";
 
 const MoodGallery = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, threshold: 0.1 });
+  const inView = useInView(ref, { once: false, amount: 0.1 }); // Using 'amount' instead of 'threshold'
   const [audioEnabled, setAudioEnabled] = useState<boolean>(false);
   
   const toggleAudio = () => {
@@ -39,6 +39,7 @@ const MoodGallery = () => {
   return (
     <section ref={ref} className="relative min-h-screen py-20 md:py-32 bg-vasee-charcoal">
       <div className="grain-overlay"></div>
+      <div className="vignette"></div>
       
       <div className="container mx-auto px-4 mb-12">
         <motion.div
@@ -47,7 +48,7 @@ const MoodGallery = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-maison font-light text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-maison font-light text-white mb-4 text-glow">
             The Shape of Thoughtful Living
           </h2>
           <p className="text-vasee-gray max-w-2xl mx-auto">
@@ -68,13 +69,19 @@ const MoodGallery = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ duration: 0.8, delay: index * 0.15 }}
+              whileHover={{ 
+                scale: 1.03, 
+                boxShadow: "0 0 30px rgba(155, 135, 245, 0.2)",
+                transition: { duration: 0.3 }
+              }}
             >
               <img
                 src={item.image}
                 alt={`Interior styling ${index + 1}`}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 pointer-events-none" />
+              <div className="absolute inset-0 opacity-0 hover:opacity-100 bg-gradient-to-t from-vasee-vibrant/40 to-transparent transition-opacity duration-300"></div>
             </motion.div>
           ))}
         </div>
@@ -83,7 +90,7 @@ const MoodGallery = () => {
       <div className="absolute bottom-10 right-10 z-10">
         <button
           onClick={toggleAudio}
-          className="p-3 bg-black/30 rounded-full text-white/60 hover:text-white transition-all"
+          className="p-3 bg-black/50 backdrop-blur-md rounded-full text-white/60 hover:text-white hover:bg-vasee-vibrant/20 transition-all"
           aria-label={audioEnabled ? "Mute audio" : "Enable audio"}
         >
           {audioEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}

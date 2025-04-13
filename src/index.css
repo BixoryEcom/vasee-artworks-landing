@@ -23,7 +23,7 @@
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
 
-    --accent: 240 3.7% 15.9%;
+    --accent: 270 76% 53%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -82,8 +82,21 @@
     @apply backdrop-blur-xl bg-black/30 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
   }
   
+  .neo-blur {
+    @apply backdrop-blur-2xl bg-black/40 border border-white/10;
+  }
+  
   .text-shadow {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  
+  .neon-glow {
+    box-shadow: 0 0 5px theme('colors.vasee.accent'), 0 0 20px theme('colors.vasee.accent.DEFAULT');
+    text-shadow: 0 0 5px theme('colors.vasee.accent'), 0 0 10px theme('colors.vasee.accent');
   }
   
   .grain-overlay {
@@ -122,4 +135,15 @@
   .parallax {
     transition: transform 0.1s ease-out;
   }
+  
+  .gradient-overlay {
+    @apply absolute inset-0 bg-gradient-to-b from-vasee-dark/20 via-transparent to-vasee-dark z-10;
+    pointer-events: none;
+  }
+  
+  .vignette {
+    @apply absolute inset-0 z-10 pointer-events-none;
+    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.8);
+  }
 }
+

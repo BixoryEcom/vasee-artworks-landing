@@ -16,7 +16,7 @@ const ScrollIndicator = () => {
         repeatType: "reverse"
       }}
     >
-      <ArrowDown className="text-white h-6 w-6 opacity-75" />
+      <ArrowDown className="text-white h-6 w-6 opacity-75 hover:text-vasee-vibrant hover:opacity-100 transition-colors" />
     </motion.div>
   );
 };

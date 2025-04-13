@@ -19,7 +19,10 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
 }) => {
   const controls = useAnimation();
   const ref = useRef(null);
-  const inView = useInView(ref, { once, threshold });
+  const inView = useInView(ref, { 
+    once, 
+    amount: threshold  // Using 'amount' instead of 'threshold'
+  });
   
   useEffect(() => {
     if (inView) {

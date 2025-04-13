@@ -16,7 +16,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ image, name, description }) =
     <motion.div
       className="flex-shrink-0 w-[85vw] md:w-[55vw] lg:w-[40vw] xl:w-[30vw] mx-5 magnetic-item"
       whileHover={{ 
-        scale: 1.02,
+        scale: 1.03,
         transition: { duration: 0.3 }
       }}
       onMouseEnter={() => setHovered(true)}
@@ -34,6 +34,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ image, name, description }) =
           alt={name}
           className="w-full h-[50vh] md:h-[60vh] object-cover"
         />
+        {hovered && (
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            className="absolute inset-0 bg-gradient-to-t from-vasee-vibrant/40 via-transparent to-transparent"
+          />
+        )}
       </div>
       <div className="mt-4 text-center">
         <h3 className="text-2xl font-maison font-light text-white">{name}</h3>
@@ -114,8 +121,9 @@ const ProductShowcase = () => {
   return (
     <section ref={containerRef} className="relative min-h-screen py-20 bg-vasee-dark">
       <div className="grain-overlay"></div>
+      <div className="vignette"></div>
       <motion.div style={{ opacity }} className="container mx-auto px-4 mb-12">
-        <h2 className="text-3xl md:text-4xl font-maison font-light text-white text-center mb-2">
+        <h2 className="text-3xl md:text-4xl font-maison font-light text-white text-center mb-2 text-glow">
           Signature Collection
         </h2>
         <p className="text-vasee-gray text-center mb-10">
@@ -127,7 +135,7 @@ const ProductShowcase = () => {
         <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 md:flex hidden">
           <button 
             onClick={scrollLeft} 
-            className="p-2 rounded-full bg-black/30 text-white/70 hover:text-white hover:bg-black/50 transition-all"
+            className="p-3 rounded-full bg-black/40 backdrop-blur-lg text-white/70 hover:text-white hover:bg-vasee-vibrant/30 transition-all"
           >
             <ArrowLeft size={20} />
           </button>
@@ -150,7 +158,7 @@ const ProductShowcase = () => {
         <div className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 md:flex hidden">
           <button 
             onClick={scrollRight}
-            className="p-2 rounded-full bg-black/30 text-white/70 hover:text-white hover:bg-black/50 transition-all"
+            className="p-3 rounded-full bg-black/40 backdrop-blur-lg text-white/70 hover:text-white hover:bg-vasee-vibrant/30 transition-all"
           >
             <ArrowRight size={20} />
           </button>

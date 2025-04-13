@@ -13,6 +13,8 @@ const Index = () => {
   useEffect(() => {
     // Set dark mode explicitly
     document.documentElement.classList.add('dark');
+    // Set background color to extremely dark
+    document.body.style.backgroundColor = '#10131A';
   }, []);
 
   return (

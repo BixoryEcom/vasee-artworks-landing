@@ -58,11 +58,13 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				vasee: {
-					dark: '#1A1F2C',
-					charcoal: '#222222',
+					dark: '#10131A',
+					charcoal: '#14161F',
 					gray: '#8E9196',
 					light: '#D6BCFA',
 					accent: '#9b87f5',
+					glow: '#b18aff',
+					vibrant: '#8B5CF6',
 				},
 			},
 			borderRadius: {
@@ -135,6 +137,14 @@ export default {
 						transform: 'scale(1.05)'
 					}
 				},
+				'glow-pulse': {
+					'0%, 100%': { 
+						filter: 'drop-shadow(0 0 5px rgba(177, 138, 255, 0.7))' 
+					},
+					'50%': { 
+						filter: 'drop-shadow(0 0 20px rgba(177, 138, 255, 0.9))' 
+					}
+				},
 				'grain': {
 					'0%, 100%': { transform: 'translate(0, 0)' },
 					'10%': { transform: 'translate(-5%, -5%)' },
@@ -160,6 +170,7 @@ export default {
 				'text-reveal-delay-1': 'text-reveal 0.8s ease-out 0.3s forwards',
 				'text-reveal-delay-2': 'text-reveal 0.8s ease-out 0.6s forwards',
 				'slow-zoom': 'slow-zoom 15s ease-out alternate infinite',
+				'glow-pulse': 'glow-pulse 4s ease-in-out infinite',
 				'grain': 'grain 8s steps(10) infinite'
 			}
 		}

@@ -20,6 +20,7 @@ const ArtistSection = () => {
       className="relative min-h-screen md:h-screen w-full flex flex-col md:flex-row bg-vasee-dark"
     >
       <div className="grain-overlay"></div>
+      <div className="vignette"></div>
       
       {/* Video Half */}
       <motion.div 
@@ -39,7 +40,8 @@ const ArtistSection = () => {
           />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-vasee-dark to-transparent z-10"></div>
       </motion.div>
       
       {/* Quote Half */}
@@ -51,7 +53,7 @@ const ArtistSection = () => {
           <h2 className="text-2xl md:text-3xl font-maison font-light text-white/90 mb-8">
             The Artist's Touch
           </h2>
-          <blockquote className="text-3xl md:text-4xl lg:text-5xl font-maison font-light italic text-white leading-tight mb-8">
+          <blockquote className="text-3xl md:text-4xl lg:text-5xl font-maison font-light italic text-white leading-tight mb-8 text-glow">
             "Crafted by hands that listen to silence."
           </blockquote>
           <p className="text-vasee-gray">
