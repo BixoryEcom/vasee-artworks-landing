@@ -1,8 +1,31 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Logo = ({ className = '' }: { className?: string }) => {
+  const [gradientPosition, setGradientPosition] = useState(0);
+  
+  useEffect(() => {
+    // Animate gradient position for the flashing effect
+    const animationDuration = 3000; // 3 seconds for full animation
+    const startTime = Date.now();
+    
+    const animateGradient = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / animationDuration, 1);
+      
+      // Move gradient from -100% to 200% for a flash effect
+      const position = -100 + progress * 300;
+      setGradientPosition(position);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animateGradient);
+      }
+    };
+    
+    requestAnimationFrame(animateGradient);
+  }, []);
+  
   return (
     <motion.div 
       initial={{ opacity: 0, scale: 0.96 }}
@@ -29,9 +52,18 @@ const Logo = ({ className = '' }: { className?: string }) => {
       </motion.div>
       
       <motion.div 
-        className="mt-3 font-maison tracking-widest text-3xl md:text-4xl font-bold uppercase"
+        className="mt-3 font-maison tracking-widest text-3xl md:text-4xl font-bold uppercase relative overflow-hidden"
         style={{ 
-          color: '#cb6ce6',
+          background: `linear-gradient(90deg, 
+            #cb6ce6 0%, 
+            #9b87f5 25%, 
+            #D6BCFA 50%, 
+            #9b87f5 75%, 
+            #cb6ce6 100%)`,
+          backgroundSize: '200% 100%',
+          backgroundPosition: `${gradientPosition}% 0`,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
           textTransform: 'uppercase'
         }}
         initial={{ opacity: 0, y: 10 }}
