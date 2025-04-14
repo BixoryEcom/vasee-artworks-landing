@@ -19,14 +19,14 @@ const Logo = ({ className = '' }: { className?: string }) => {
         transition={{ type: "spring", stiffness: 300, damping: 10 }}
       >
         <motion.img 
-          src="/lovable-uploads/bab78167-9562-4be0-b7df-f7c9eefea51c.png" 
+          src="/lovable-uploads/fb253245-2a05-45a2-9954-4724b7319a22.png" 
           alt="VASEE Logo" 
           className="h-20 w-20 md:h-24 md:w-24 object-contain drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"
         />
       </motion.div>
       
       <motion.div 
-        className="mt-3 font-maison tracking-widest text-xl md:text-2xl font-bold uppercase"
+        className="mt-3 font-maison tracking-widest text-2xl md:text-3xl font-bold uppercase"
         style={{ color: '#cb6ce6' }}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
