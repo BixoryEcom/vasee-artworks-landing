@@ -27,7 +27,7 @@ const BrandEssence = () => {
       
       <div className="container relative z-10 mx-auto px-6 max-w-4xl">
         <AnimatedText
-          text="At VASEE, we believe in the quiet power of thoughtfully crafted objects. Each vessel is born from moments of stillness—where clay meets intention, where form follows feeling. Our pieces aren't mere containers, but vessels for presence in a world that rarely pauses. They stand as quiet guardians of space, inviting contemplation and holding the beauty of imperfection within their carefully considered forms."
+          text="At VASEE, we craft emotional vessels through our revolutionary glass fabrication process that captures the essence of ceramic with the elegance of glass. Each piece tells its own story—an artistic dialogue between material and meaning. Our vases aren't merely containers, but storytellers in your space—transformative objects that resonate with your spirit while elevating your surroundings through their thoughtful presence and artistic vision."
           className="font-maison text-xl md:text-2xl lg:text-3xl font-light leading-relaxed text-white/90 text-center"
           threshold={0.25}
         />

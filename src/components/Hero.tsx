@@ -42,7 +42,7 @@ const Hero = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            Designed to Hold Presence.
+            Art That Holds Your Story
           </motion.h1>
         </div>
 
@@ -59,7 +59,7 @@ const Hero = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-3 bg-transparent border border-white/30 hover:border-vasee-vibrant text-white text-lg font-maison transition-all duration-300 hover:bg-vasee-vibrant/10 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
           >
-            Enter the Gallery 
+            Explore Our Collection 
             <ArrowRight className="ml-2 h-5 w-5" />
           </a>
         </motion.div>

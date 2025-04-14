@@ -49,10 +49,10 @@ const MoodGallery = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-maison font-light text-white mb-4 text-glow">
-            The Shape of Thoughtful Living
+            Emotional Glass in Your Space
           </h2>
           <p className="text-vasee-gray max-w-2xl mx-auto">
-            Our vessels find their purpose in the quiet corners of considered interiors.
+            Art pieces that transform environments while telling stories through our signature glass-ceramic process.
           </p>
         </motion.div>
       </div>

@@ -51,13 +51,13 @@ const ArtistSection = () => {
       >
         <div>
           <h2 className="text-2xl md:text-3xl font-maison font-light text-white/90 mb-8">
-            The Artist's Touch
+            The Artist's Vision
           </h2>
           <blockquote className="text-3xl md:text-4xl lg:text-5xl font-maison font-light italic text-white leading-tight mb-8 text-glow">
-            "Crafted by hands that listen to silence."
+            "Glass that speaks to your soul with a ceramic whisper."
           </blockquote>
           <p className="text-vasee-gray">
-            Every VASEE piece bears the subtle markings of its maker—a testament to the human spirit embodied within.
+            Our revolutionary process transforms glass into emotion—each piece an original story waiting to connect with your spirit and personal narrative.
           </p>
         </div>
       </motion.div>

@@ -84,28 +84,28 @@ const ProductShowcase = () => {
   const products = [
     {
       image: "https://images.unsplash.com/photo-1580894894513-541e068a3e2b?q=80&w=2940&auto=format&fit=crop",
-      name: "Lunar",
-      description: "Embracing the rhythm of imperfection."
+      name: "Lunar Whisper",
+      description: "Reflecting inner tranquility through glass that feels like moonlit ceramic."
     },
     {
       image: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=2835&auto=format&fit=crop",
-      name: "Dune",
-      description: "Where contour meets shadow."
+      name: "Dune Symphony",
+      description: "Where contoured glass captures the spirit of desert landscapes."
     },
     {
       image: "https://images.unsplash.com/photo-1603204077779-bed963ea7d0e?q=80&w=2833&auto=format&fit=crop",
-      name: "Echo",
-      description: "Silently holding space."
+      name: "Echo Chamber",
+      description: "Resonating with memories through our patented glass-ceramic fusion."
     },
     {
       image: "https://images.unsplash.com/photo-1612196808214-b40b912365e4?q=80&w=2874&auto=format&fit=crop",
-      name: "Terra",
-      description: "Grounded in earthen memories."
+      name: "Terra Illuminate",
+      description: "Earthen textures captured in luminous, translucent glass."
     },
     {
       image: "https://images.unsplash.com/photo-1593592023995-a8a4ffd6153d?q=80&w=2874&auto=format&fit=crop",
-      name: "Aura",
-      description: "Subtle presence, lasting impression."
+      name: "Aura Vessel",
+      description: "Embodying emotion through our revolutionary glass fabrication."
     }
   ];
 
@@ -124,10 +124,10 @@ const ProductShowcase = () => {
       <div className="vignette"></div>
       <motion.div style={{ opacity }} className="container mx-auto px-4 mb-12">
         <h2 className="text-3xl md:text-4xl font-maison font-light text-white text-center mb-2 text-glow">
-          Signature Collection
+          Emotional Glass Collection
         </h2>
         <p className="text-vasee-gray text-center mb-10">
-          Vessels that transform spaces through presence.
+          Revolutionary glass vessels with ceramic soul, each telling a unique story.
         </p>
       </motion.div>
 
