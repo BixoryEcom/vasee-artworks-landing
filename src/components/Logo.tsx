@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 const Logo = ({ className = '' }: { className?: string }) => {
   const [gradientPosition, setGradientPosition] = useState(0);
+  const [sweepPosition, setSweepPosition] = useState(-100);
   
   useEffect(() => {
     // Animate gradient position for the text flashing effect
@@ -24,6 +25,32 @@ const Logo = ({ className = '' }: { className?: string }) => {
     };
     
     requestAnimationFrame(animateGradient);
+    
+    // Animate the illuminating light sweep effect
+    const sweepDuration = 2000; // 2 seconds for full sweep
+    const sweepStartTime = Date.now();
+    
+    const animateSweep = () => {
+      const elapsed = Date.now() - sweepStartTime;
+      const progress = Math.min(elapsed / sweepDuration, 1);
+      
+      // Move sweep from -100% to 200%
+      const position = -100 + progress * 300;
+      setSweepPosition(position);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animateSweep);
+      }
+    };
+    
+    // Start the sweep animation after a small delay
+    const sweepTimer = setTimeout(() => {
+      requestAnimationFrame(animateSweep);
+    }, 500);
+    
+    return () => {
+      clearTimeout(sweepTimer);
+    };
   }, []);
   
   return (
@@ -40,10 +67,11 @@ const Logo = ({ className = '' }: { className?: string }) => {
         }}
         transition={{ type: "spring", stiffness: 300, damping: 10 }}
       >
+        {/* The logo image */}
         <motion.img 
           src="/lovable-uploads/fb253245-2a05-45a2-9954-4724b7319a22.png" 
           alt="VASEE ART Logo" 
-          className="h-28 w-28 md:h-32 md:w-32 object-contain"
+          className="h-28 w-28 md:h-32 md:w-32 object-contain relative z-10"
           style={{
             filter: `drop-shadow(0 0 8px rgba(155, 135, 245, 0.6)) 
                      drop-shadow(0 0 16px rgba(177, 138, 255, 0.4))`
@@ -71,6 +99,27 @@ const Logo = ({ className = '' }: { className?: string }) => {
               ease: "easeInOut"
             }
           }}
+        />
+        
+        {/* Illuminating light sweep overlay */}
+        <motion.div 
+          className="absolute inset-0 z-20 pointer-events-none" 
+          style={{
+            background: `linear-gradient(
+              135deg,
+              rgba(255, 255, 255, 0) 0%,
+              rgba(255, 255, 255, 0.3) 30%,
+              rgba(255, 255, 255, 0.8) 50%,
+              rgba(255, 255, 255, 0.3) 70%,
+              rgba(255, 255, 255, 0) 100%
+            )`,
+            backgroundSize: '200% 200%',
+            backgroundPosition: `${sweepPosition}% ${sweepPosition}%`,
+            mixBlendMode: 'overlay',
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, delay: 0.3 }}
         />
       </motion.div>
       
