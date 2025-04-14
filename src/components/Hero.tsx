@@ -1,10 +1,67 @@
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Logo from "./Logo";
 
 const Hero = () => {
+  const controls = useAnimation();
+  const particlesRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    // Start animations
+    controls.start({
+      opacity: [0, 1],
+      transition: { duration: 2 }
+    });
+    
+    // Particles animation
+    if (particlesRef.current) {
+      const particles = Array.from({ length: 20 }).map(() => {
+        const particle = document.createElement("div");
+        const size = Math.random() * 2 + 1;
+        particle.className = "absolute rounded-full bg-white/10 z-10";
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.opacity = `${Math.random() * 0.5 + 0.1}`;
+        particle.style.filter = `blur(${Math.random() * 2}px)`;
+        
+        // Animation
+        const duration = Math.random() * 60 + 30;
+        const direction = Math.random() > 0.5 ? 1 : -1;
+        const delay = Math.random() * 10;
+        
+        particle.animate(
+          [
+            { transform: 'translateY(0) translateX(0)' },
+            { transform: `translateY(${direction * 100}px) translateX(${direction * 30}px)` }
+          ],
+          {
+            duration: duration * 1000,
+            iterations: Infinity,
+            direction: 'alternate',
+            easing: 'ease-in-out',
+            delay: delay * 1000
+          }
+        );
+        
+        return particle;
+      });
+      
+      particles.forEach(particle => {
+        particlesRef.current?.appendChild(particle);
+      });
+      
+      return () => {
+        particles.forEach(particle => {
+          particle.remove();
+        });
+      };
+    }
+  }, [controls]);
+
   return (
     <section className="relative w-full h-screen overflow-hidden">
       {/* Video Background */}
@@ -29,6 +86,47 @@ const Hero = () => {
         </div>
       </div>
 
+      {/* Floating particles */}
+      <div ref={particlesRef} className="absolute inset-0 overflow-hidden pointer-events-none"></div>
+      
+      {/* Animated light orb */}
+      <motion.div 
+        className="absolute rounded-full bg-gradient-to-b from-vasee-vibrant/30 to-transparent blur-3xl w-32 h-32 z-0"
+        animate={{
+          x: [0, 10, -30, 0],
+          y: [0, -20, 30, 0],
+          opacity: [0.3, 0.5, 0.4, 0.3]
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        style={{
+          top: '30%',
+          left: '20%'
+        }}
+      />
+      
+      <motion.div 
+        className="absolute rounded-full bg-gradient-to-b from-vasee-accent/20 to-transparent blur-3xl w-48 h-48 z-0"
+        animate={{
+          x: [0, 40, -10, 0],
+          y: [0, 30, -40, 0],
+          opacity: [0.2, 0.3, 0.2, 0.2]
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2
+        }}
+        style={{
+          top: '50%',
+          right: '15%'
+        }}
+      />
+
       {/* Hero Banner - Added as an overlay with proper positioning */}
       <motion.div 
         className="absolute z-10 w-full h-full flex items-center justify-center pointer-events-none"
@@ -46,6 +144,19 @@ const Hero = () => {
             transition={{ duration: 1.5 }}
           />
           <div className="absolute inset-0 bg-black/30 mix-blend-overlay"></div>
+          
+          {/* Animated highlight effect */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent"
+            initial={{ x: '-100%', opacity: 0 }}
+            animate={{ x: '100%', opacity: [0, 0.3, 0] }}
+            transition={{
+              duration: 3,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatDelay: 5
+            }}
+          />
         </div>
       </motion.div>
 
