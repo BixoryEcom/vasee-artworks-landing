@@ -29,6 +29,26 @@ const Hero = () => {
         </div>
       </div>
 
+      {/* Hero Banner - Added as an overlay with proper positioning */}
+      <motion.div 
+        className="absolute z-10 w-full h-full flex items-center justify-center pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.3 }}
+      >
+        <div className="relative w-11/12 md:w-4/5 lg:w-3/5 max-w-5xl aspect-[16/9] overflow-hidden rounded-lg">
+          <motion.img
+            src="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&q=80&w=1200"
+            alt="VASEE artistic glass vase"
+            className="w-full h-full object-cover brightness-75"
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5 }}
+          />
+          <div className="absolute inset-0 bg-black/30 mix-blend-overlay"></div>
+        </div>
+      </motion.div>
+
       {/* Hero Content */}
       <div className="relative z-20 flex flex-col justify-center items-center h-full px-4 text-center">
         <div className="mb-16">
@@ -42,7 +62,7 @@ const Hero = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            Art That Holds Your Story
+            Designed to Hold Presence
           </motion.h1>
         </div>
 
