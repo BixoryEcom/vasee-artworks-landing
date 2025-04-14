@@ -1,7 +1,7 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Logo from "./Logo";
 
 const Hero = () => {
   return (
@@ -30,18 +30,7 @@ const Hero = () => {
 
       {/* Hero Content */}
       <div className="relative z-20 flex flex-col justify-center items-center h-full px-4 text-center">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="mb-6"
-        >
-          <img 
-            src="https://placehold.co/200x80/1A1F2C/ffffff?text=VASEE" 
-            alt="VASEE" 
-            className="h-16 md:h-20 animate-glow-pulse"
-          />
-        </motion.div>
+        <Logo className="mb-6" />
 
         <div className="overflow-hidden mb-8 max-w-3xl">
           <motion.h1 

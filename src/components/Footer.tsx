@@ -1,7 +1,7 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Instagram, Mail } from "lucide-react";
+import Logo from "./Logo";
 
 const Footer = () => {
   return (
@@ -11,19 +11,7 @@ const Footer = () => {
       
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col items-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-10"
-          >
-            <img 
-              src="https://placehold.co/200x80/1A1F2C/ffffff?text=VASEE"
-              alt="VASEE" 
-              className="h-12 md:h-14 animate-glow-pulse"
-            />
-          </motion.div>
+          <Logo className="mb-10" />
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
