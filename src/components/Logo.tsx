@@ -1,9 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Logo = ({ className = '' }: { className?: string }) => {
   const [gradientPosition, setGradientPosition] = useState(0);
-  const [highlightPosition, setHighlightPosition] = useState(-100);
   
   useEffect(() => {
     // Animate gradient position for the text flashing effect
@@ -24,25 +24,6 @@ const Logo = ({ className = '' }: { className?: string }) => {
     };
     
     requestAnimationFrame(animateGradient);
-    
-    // Animate highlight sweep for the logo icon
-    const highlightDuration = 2500; // 2.5 seconds for full sweep
-    const highlightStartTime = Date.now();
-    
-    const animateHighlight = () => {
-      const elapsed = Date.now() - highlightStartTime;
-      const progress = Math.min(elapsed / highlightDuration, 1);
-      
-      // Move highlight from -100% to 200% for a diagonal sweep effect
-      const position = -100 + progress * 300;
-      setHighlightPosition(position);
-      
-      if (progress < 1) {
-        requestAnimationFrame(animateHighlight);
-      }
-    };
-    
-    requestAnimationFrame(animateHighlight);
   }, []);
   
   return (
@@ -53,10 +34,9 @@ const Logo = ({ className = '' }: { className?: string }) => {
       className={`${className} flex flex-col items-center`}
     >
       <motion.div
-        className="rounded-md p-0 bg-transparent border-none relative overflow-hidden"
+        className="p-0 bg-transparent border-none relative"
         whileHover={{ 
           scale: 1.05,
-          boxShadow: "0 0 25px rgba(155, 135, 245, 0.6)"
         }}
         transition={{ type: "spring", stiffness: 300, damping: 10 }}
       >
@@ -90,19 +70,6 @@ const Logo = ({ className = '' }: { className?: string }) => {
               repeat: 0,
               ease: "easeInOut"
             }
-          }}
-        />
-        
-        {/* Diagonal highlight overlay - applied directly on the logo */}
-        <div 
-          className="absolute inset-0 z-10 pointer-events-none mix-blend-overlay"
-          style={{
-            background: `linear-gradient(135deg, 
-              rgba(255,255,255,0.7) 0%, 
-              rgba(255,255,255,0) 50%, 
-              rgba(255,255,255,0) 100%)`,
-            backgroundSize: '200% 200%',
-            backgroundPosition: `${highlightPosition}% ${highlightPosition}%`,
           }}
         />
       </motion.div>
