@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -30,9 +31,11 @@ const Hero = () => {
 
       {/* Hero Content */}
       <div className="relative z-20 flex flex-col justify-center items-center h-full px-4 text-center">
-        <Logo className="mb-6" />
+        <div className="mb-16">
+          <Logo />
+        </div>
 
-        <div className="overflow-hidden mb-8 max-w-3xl">
+        <div className="overflow-hidden max-w-3xl mb-10">
           <motion.h1 
             className="font-maison text-4xl md:text-6xl lg:text-7xl text-white font-light tracking-tight text-glow"
             initial={{ y: 100, opacity: 0 }}
@@ -48,12 +51,13 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
           whileHover={{ scale: 1.05 }}
+          className="mt-8"
         >
           <a
             href="https://vasee.art"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-8 py-3 mt-8 bg-transparent border border-white/30 hover:border-vasee-vibrant text-white text-lg font-maison transition-all duration-300 hover:bg-vasee-vibrant/10 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
+            className="inline-flex items-center px-8 py-3 bg-transparent border border-white/30 hover:border-vasee-vibrant text-white text-lg font-maison transition-all duration-300 hover:bg-vasee-vibrant/10 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
           >
             Enter the Gallery 
             <ArrowRight className="ml-2 h-5 w-5" />

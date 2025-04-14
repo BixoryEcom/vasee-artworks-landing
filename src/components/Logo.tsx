@@ -8,22 +8,31 @@ const Logo = ({ className = '' }: { className?: string }) => {
       initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className={`${className} relative flex flex-col items-center`}
+      className={`${className} flex flex-col items-center`}
     >
-      <div className="absolute -inset-2 bg-vasee-glow/20 rounded-full blur-xl animate-glow-pulse"></div>
-      <motion.img 
-        src="/lovable-uploads/bab78167-9562-4be0-b7df-f7c9eefea51c.png" 
-        alt="VASEE Logo" 
-        className="h-16 md:h-20 relative z-10 drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]" 
+      <motion.div
+        className="rounded-md p-1 bg-black/50 border border-white/10"
         whileHover={{ 
           scale: 1.05,
-          filter: "drop-shadow(0 0 20px rgba(255, 215, 0, 0.7))"
+          boxShadow: "0 0 25px rgba(155, 135, 245, 0.6)"
         }}
         transition={{ type: "spring", stiffness: 300, damping: 10 }}
-      />
-      <div className="mt-4 font-maison tracking-widest text-xl font-bold text-white/90 uppercase text-glow">
-        VASEE
-      </div>
+      >
+        <motion.img 
+          src="/lovable-uploads/bab78167-9562-4be0-b7df-f7c9eefea51c.png" 
+          alt="VASEE Logo" 
+          className="h-14 w-14 md:h-16 md:w-16 object-contain drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"
+        />
+      </motion.div>
+      
+      <motion.div 
+        className="mt-3 font-maison tracking-widest text-lg md:text-xl font-bold text-white/90 uppercase"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+      >
+        vasee
+      </motion.div>
     </motion.div>
   );
 };
