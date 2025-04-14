@@ -61,32 +61,49 @@ const Logo = ({ className = '' }: { className?: string }) => {
         }}
         transition={{ type: "spring", stiffness: 300, damping: 10 }}
       >
-        {/* Diagonal highlight overlay */}
-        <div 
-          className="absolute inset-0 z-10 pointer-events-none"
-          style={{
-            background: `linear-gradient(135deg, 
-              rgba(255,255,255,0.8) 0%, 
-              rgba(255,255,255,0) 50%, 
-              rgba(255,255,255,0) 100%)`,
-            backgroundSize: '200% 200%',
-            backgroundPosition: `${highlightPosition}% ${highlightPosition}%`,
-            mixBlendMode: 'overlay'
-          }}
-        />
-        
         <motion.img 
           src="/lovable-uploads/fb253245-2a05-45a2-9954-4724b7319a22.png" 
           alt="VASEE ART Logo" 
-          className="h-28 w-28 md:h-32 md:w-32 object-contain drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"
+          className="h-28 w-28 md:h-32 md:w-32 object-contain"
+          style={{
+            filter: `drop-shadow(0 0 8px rgba(155, 135, 245, 0.6)) 
+                     drop-shadow(0 0 16px rgba(177, 138, 255, 0.4))`
+          }}
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          animate={{ 
+            opacity: 1, 
+            y: 0, 
+            scale: 1,
+            filter: [
+              'drop-shadow(0 0 4px rgba(155, 135, 245, 0.2))', 
+              'drop-shadow(0 0 15px rgba(177, 138, 255, 0.8))',
+              'drop-shadow(0 0 8px rgba(155, 135, 245, 0.6))'
+            ]
+          }}
           transition={{ 
             duration: 1.2, 
             delay: 0.2,
             type: "spring",
             stiffness: 260, 
-            damping: 20
+            damping: 20,
+            filter: {
+              duration: 2,
+              repeat: 0,
+              ease: "easeInOut"
+            }
+          }}
+        />
+        
+        {/* Diagonal highlight overlay - applied directly on the logo */}
+        <div 
+          className="absolute inset-0 z-10 pointer-events-none mix-blend-overlay"
+          style={{
+            background: `linear-gradient(135deg, 
+              rgba(255,255,255,0.7) 0%, 
+              rgba(255,255,255,0) 50%, 
+              rgba(255,255,255,0) 100%)`,
+            backgroundSize: '200% 200%',
+            backgroundPosition: `${highlightPosition}% ${highlightPosition}%`,
           }}
         />
       </motion.div>
