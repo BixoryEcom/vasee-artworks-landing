@@ -8,7 +8,7 @@ const Logo = ({ className = '' }: { className?: string }) => {
       initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className={`${className} relative`}
+      className={`${className} relative flex flex-col items-center`}
     >
       <div className="absolute -inset-2 bg-vasee-glow/20 rounded-full blur-xl animate-glow-pulse"></div>
       <motion.img 
@@ -21,7 +21,9 @@ const Logo = ({ className = '' }: { className?: string }) => {
         }}
         transition={{ type: "spring", stiffness: 300, damping: 10 }}
       />
-      <div className="mt-3 font-maison tracking-widest text-xl text-glow">VASEE</div>
+      <div className="mt-3 font-maison tracking-widest text-xl font-bold text-white/90 uppercase text-glow">
+        VASEE
+      </div>
     </motion.div>
   );
 };
