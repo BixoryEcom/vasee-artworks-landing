@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 
 const Logo = ({ className = '' }: { className?: string }) => {
   const [gradientPosition, setGradientPosition] = useState(0);
+  const [highlightPosition, setHighlightPosition] = useState(-100);
   
   useEffect(() => {
-    // Animate gradient position for the flashing effect
+    // Animate gradient position for the text flashing effect
     const animationDuration = 3000; // 3 seconds for full animation
     const startTime = Date.now();
     
@@ -24,6 +25,25 @@ const Logo = ({ className = '' }: { className?: string }) => {
     };
     
     requestAnimationFrame(animateGradient);
+    
+    // Animate highlight sweep for the logo icon
+    const highlightDuration = 2500; // 2.5 seconds for full sweep
+    const highlightStartTime = Date.now();
+    
+    const animateHighlight = () => {
+      const elapsed = Date.now() - highlightStartTime;
+      const progress = Math.min(elapsed / highlightDuration, 1);
+      
+      // Move highlight from -100% to 200% for a diagonal sweep effect
+      const position = -100 + progress * 300;
+      setHighlightPosition(position);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animateHighlight);
+      }
+    };
+    
+    requestAnimationFrame(animateHighlight);
   }, []);
   
   return (
@@ -34,20 +54,40 @@ const Logo = ({ className = '' }: { className?: string }) => {
       className={`${className} flex flex-col items-center`}
     >
       <motion.div
-        className="rounded-md p-2 bg-transparent border border-white/10"
+        className="rounded-md p-2 bg-transparent border border-white/10 relative overflow-hidden"
         whileHover={{ 
           scale: 1.05,
           boxShadow: "0 0 25px rgba(155, 135, 245, 0.6)"
         }}
         transition={{ type: "spring", stiffness: 300, damping: 10 }}
       >
+        {/* Diagonal highlight overlay */}
+        <div 
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{
+            background: `linear-gradient(135deg, 
+              rgba(255,255,255,0.8) 0%, 
+              rgba(255,255,255,0) 50%, 
+              rgba(255,255,255,0) 100%)`,
+            backgroundSize: '200% 200%',
+            backgroundPosition: `${highlightPosition}% ${highlightPosition}%`,
+            mixBlendMode: 'overlay'
+          }}
+        />
+        
         <motion.img 
           src="/lovable-uploads/fb253245-2a05-45a2-9954-4724b7319a22.png" 
           alt="VASEE ART Logo" 
           className="h-28 w-28 md:h-32 md:w-32 object-contain drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.2 }}
+          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ 
+            duration: 1.2, 
+            delay: 0.2,
+            type: "spring",
+            stiffness: 260, 
+            damping: 20
+          }}
         />
       </motion.div>
       
