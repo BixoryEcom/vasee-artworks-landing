@@ -14,7 +14,7 @@ const Logo = ({ className = '' }: { className?: string }) => {
       <motion.img 
         src="/lovable-uploads/bab78167-9562-4be0-b7df-f7c9eefea51c.png" 
         alt="VASEE Logo" 
-        className="h-20 md:h-24 relative z-10 drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]" 
+        className="h-16 md:h-20 relative z-10 drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]" 
         whileHover={{ 
           scale: 1.05,
           filter: "drop-shadow(0 0 20px rgba(255, 215, 0, 0.7))"
