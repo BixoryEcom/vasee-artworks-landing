@@ -21,7 +21,7 @@ const Logo = ({ className = '' }: { className?: string }) => {
         }}
         transition={{ type: "spring", stiffness: 300, damping: 10 }}
       />
-      <div className="mt-3 font-maison tracking-widest text-xl font-bold text-white/90 uppercase text-glow">
+      <div className="mt-4 font-maison tracking-widest text-xl font-bold text-white/90 uppercase text-glow">
         VASEE
       </div>
     </motion.div>
