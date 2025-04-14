@@ -11,7 +11,7 @@ const Logo = ({ className = '' }: { className?: string }) => {
       className={`${className} flex flex-col items-center`}
     >
       <motion.div
-        className="rounded-md p-1 bg-black/50 border border-white/10"
+        className="rounded-md p-2 bg-transparent border border-white/10"
         whileHover={{ 
           scale: 1.05,
           boxShadow: "0 0 25px rgba(155, 135, 245, 0.6)"
@@ -21,7 +21,7 @@ const Logo = ({ className = '' }: { className?: string }) => {
         <motion.img 
           src="/lovable-uploads/bab78167-9562-4be0-b7df-f7c9eefea51c.png" 
           alt="VASEE Logo" 
-          className="h-14 w-14 md:h-16 md:w-16 object-contain drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"
+          className="h-20 w-20 md:h-24 md:w-24 object-contain drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"
         />
       </motion.div>
       
@@ -39,4 +39,3 @@ const Logo = ({ className = '' }: { className?: string }) => {
 };
 
 export default Logo;
-
