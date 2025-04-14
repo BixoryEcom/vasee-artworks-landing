@@ -30,7 +30,7 @@ const Hero = () => {
       {/* Animated light orbs */}
       <AnimatedLightOrbs />
 
-      {/* Hero Logo */}
+      {/* Hero Logo - Now placed before the banner */}
       <HeroLogo />
 
       {/* Hero Banner Image */}
