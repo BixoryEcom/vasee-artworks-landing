@@ -30,7 +30,10 @@ const Logo = ({ className = '' }: { className?: string }) => {
       
       <motion.div 
         className="mt-3 font-maison tracking-widest text-3xl md:text-4xl font-bold uppercase"
-        style={{ color: '#cb6ce6' }}
+        style={{ 
+          color: '#cb6ce6',
+          textTransform: 'uppercase'  // Ensure uppercase with inline style as well
+        }}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 1 }}
