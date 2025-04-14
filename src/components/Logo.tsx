@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -54,7 +53,7 @@ const Logo = ({ className = '' }: { className?: string }) => {
       className={`${className} flex flex-col items-center`}
     >
       <motion.div
-        className="rounded-md p-2 bg-transparent border border-white/10 relative overflow-hidden"
+        className="rounded-md p-0 bg-transparent border-none relative overflow-hidden"
         whileHover={{ 
           scale: 1.05,
           boxShadow: "0 0 25px rgba(155, 135, 245, 0.6)"
