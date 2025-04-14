@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -85,11 +84,11 @@ const Hero = () => {
           <div className="grain-overlay"></div>
         </div>
       </div>
-
+      
       {/* Floating particles */}
       <div ref={particlesRef} className="absolute inset-0 overflow-hidden pointer-events-none"></div>
       
-      {/* Animated light orb */}
+      {/* Animated light orbs */}
       <motion.div 
         className="absolute rounded-full bg-gradient-to-b from-vasee-vibrant/30 to-transparent blur-3xl w-32 h-32 z-0"
         animate={{
@@ -127,7 +126,17 @@ const Hero = () => {
         }}
       />
 
-      {/* Hero Banner - Added as an overlay with proper positioning */}
+      {/* Hero Logo - Positioned prominently in the dark space */}
+      <motion.div 
+        className="absolute z-20 top-8 left-1/2 transform -translate-x-1/2 w-full flex justify-center"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <Logo className="scale-125" />
+      </motion.div>
+
+      {/* Hero Banner Image */}
       <motion.div 
         className="absolute z-10 w-full h-full flex items-center justify-center pointer-events-none"
         initial={{ opacity: 0 }}
@@ -162,10 +171,6 @@ const Hero = () => {
 
       {/* Hero Content */}
       <div className="relative z-20 flex flex-col justify-center items-center h-full px-4 text-center">
-        <div className="mb-16">
-          <Logo />
-        </div>
-
         <div className="overflow-hidden max-w-3xl mb-10">
           <motion.h1 
             className="font-maison text-4xl md:text-6xl lg:text-7xl text-white font-light tracking-tight text-glow"

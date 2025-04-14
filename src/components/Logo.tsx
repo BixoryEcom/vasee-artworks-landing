@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -38,14 +37,14 @@ const Logo = ({ className = '' }: { className?: string }) => {
         transition={{ type: "spring", stiffness: 300, damping: 10 }}
         className="relative"
       >
-        {/* Logo image with illumination effect achieved through CSS animation */}
+        {/* Logo image with larger size and enhanced illumination */}
         <motion.img 
           src="/lovable-uploads/fb253245-2a05-45a2-9954-4724b7319a22.png" 
           alt="VASEE ART Logo" 
-          className="h-28 w-28 md:h-32 md:w-32 object-contain"
+          className="h-40 w-40 md:h-48 md:w-48 object-contain"
           style={{
-            filter: `drop-shadow(0 0 8px rgba(155, 135, 245, 0.6)) 
-                     drop-shadow(0 0 16px rgba(177, 138, 255, 0.4))`
+            filter: `drop-shadow(0 0 12px rgba(155, 135, 245, 0.8)) 
+                     drop-shadow(0 0 20px rgba(177, 138, 255, 0.6))`
           }}
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={{ 
@@ -53,9 +52,9 @@ const Logo = ({ className = '' }: { className?: string }) => {
             y: 0, 
             scale: 1,
             filter: [
-              'drop-shadow(0 0 4px rgba(155, 135, 245, 0.2))', 
-              'drop-shadow(0 0 15px rgba(177, 138, 255, 0.8))',
-              'drop-shadow(0 0 8px rgba(155, 135, 245, 0.6))'
+              'drop-shadow(0 0 6px rgba(155, 135, 245, 0.4))', 
+              'drop-shadow(0 0 20px rgba(177, 138, 255, 1))',
+              'drop-shadow(0 0 12px rgba(155, 135, 245, 0.8))'
             ]
           }}
           transition={{ 
@@ -87,7 +86,7 @@ const Logo = ({ className = '' }: { className?: string }) => {
       </motion.div>
       
       <motion.div 
-        className="mt-3 font-maison tracking-widest text-3xl md:text-4xl font-bold uppercase relative overflow-hidden"
+        className="mt-4 font-maison tracking-widest text-4xl md:text-5xl font-bold uppercase relative overflow-hidden"
         style={{ 
           background: `linear-gradient(90deg, 
             #cb6ce6 0%, 
