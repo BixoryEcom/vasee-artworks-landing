@@ -26,15 +26,17 @@ const Logo = ({ className = '' }: { className?: string }) => {
       </motion.div>
       
       <motion.div 
-        className="mt-3 font-maison tracking-widest text-lg md:text-xl font-bold text-white/90 uppercase"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        className="mt-3 font-maison tracking-widest text-xl md:text-2xl font-bold uppercase"
+        style={{ color: '#cb6ce6' }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        vasee
+        VASEE
       </motion.div>
     </motion.div>
   );
 };
 
 export default Logo;
+
