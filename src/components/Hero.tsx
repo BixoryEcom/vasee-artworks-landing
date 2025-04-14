@@ -126,9 +126,9 @@ const Hero = () => {
         }}
       />
 
-      {/* Hero Logo - Positioned prominently in the dark space */}
+      {/* Hero Logo - Centered in the dark space */}
       <motion.div 
-        className="absolute z-20 top-8 left-1/2 transform -translate-x-1/2 w-full flex justify-center"
+        className="absolute z-20 top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex justify-center"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
