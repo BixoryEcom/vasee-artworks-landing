@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 const HeroBanner = () => {
   return (
     <motion.div 
-      className="absolute z-10 w-full h-full flex items-center justify-center pointer-events-none"
+      className="w-full flex items-center justify-center pointer-events-none"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 0.3 }}
     >
-      <div className="relative w-11/12 md:w-4/5 lg:w-3/5 max-w-5xl aspect-[16/9] overflow-hidden rounded-lg">
+      <div className="relative w-full max-w-5xl aspect-[16/9] overflow-hidden rounded-lg">
         <motion.img
           src="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&q=80&w=1200"
           alt="VASEE artistic glass vase"

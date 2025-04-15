@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 const HeroContent = () => {
   return (
-    <div className="relative z-20 flex flex-col justify-center items-center h-full px-4 text-center">
+    <div className="flex flex-col justify-center items-center px-4 text-center my-8">
       <div className="overflow-hidden max-w-3xl mb-10">
         <motion.h1 
           className="font-maison text-4xl md:text-6xl lg:text-7xl text-white font-light tracking-tight text-glow"

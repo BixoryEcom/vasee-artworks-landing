@@ -30,14 +30,19 @@ const Hero = () => {
       {/* Animated light orbs */}
       <AnimatedLightOrbs />
 
-      {/* Hero Logo - Now placed at the top */}
-      <HeroLogo />
-
-      {/* Hero Banner Image */}
-      <HeroBanner />
-
-      {/* Hero Content */}
-      <HeroContent />
+      {/* Main hero content container - restructured for better layout */}
+      <div className="relative z-20 w-full h-full flex flex-col items-center justify-between py-8">
+        {/* Logo at the top */}
+        <HeroLogo />
+        
+        {/* Content in the middle */}
+        <HeroContent />
+        
+        {/* Banner at the bottom */}
+        <div className="w-full max-w-6xl mx-auto mt-8">
+          <HeroBanner />
+        </div>
+      </div>
     </section>
   );
 };

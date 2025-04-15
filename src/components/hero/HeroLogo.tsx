@@ -6,7 +6,7 @@ import Logo from "../Logo";
 const HeroLogo = () => {
   return (
     <motion.div 
-      className="absolute z-30 top-[5%] left-1/2 transform -translate-x-1/2 w-full flex flex-col items-center"
+      className="w-full flex justify-center pt-8"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.2 }}
