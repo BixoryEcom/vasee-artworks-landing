@@ -19,7 +19,7 @@ const ArtistSection = () => {
   useEffect(() => {
     const processImage = async () => {
       try {
-        const image = await loadImage("/lovable-uploads/b872125e-90c7-4edb-9abb-67ba8d12dfad.png");
+        const image = await loadImage("/lovable-uploads/73390a27-545b-4778-821a-09e948195494.png");
         const processed = await removeBackground(image);
         setProcessedImage(processed);
       } catch (error) {
