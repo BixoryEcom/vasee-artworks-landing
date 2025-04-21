@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
@@ -11,6 +10,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ image, name, description }) => {
   const [hovered, setHovered] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   return (
     <motion.div
@@ -30,9 +30,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ image, name, description }) =
             rotateY: hovered ? -2 : 0
           }}
           transition={{ duration: 0.4 }}
-          src={image}
+          src={imageError ? "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=2835&auto=format&fit=crop" : image}
           alt={name}
           className="w-full h-[50vh] md:h-[60vh] object-cover"
+          onError={() => setImageError(true)}
         />
         {hovered && (
           <motion.div 
@@ -83,7 +84,7 @@ const ProductShowcase = () => {
   
   const products = [
     {
-      image: "/public/lovable-uploads/3f6e8f11-768b-429b-b725-11451a8fbed4.png",
+      image: "/lovable-uploads/3f6e8f11-768b-429b-b725-11451a8fbed4.png",
       name: "Lunar Whisper",
       description: "Reflecting inner tranquility through glass that feels like moonlit ceramic."
     },
@@ -169,4 +170,3 @@ const ProductShowcase = () => {
 };
 
 export default ProductShowcase;
-
