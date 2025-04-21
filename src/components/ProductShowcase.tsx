@@ -83,7 +83,7 @@ const ProductShowcase = () => {
   
   const products = [
     {
-      image: "https://images.unsplash.com/photo-1580894894513-541e068a3e2b?q=80&w=2940&auto=format&fit=crop",
+      image: "/public/lovable-uploads/3f6e8f11-768b-429b-b725-11451a8fbed4.png",
       name: "Lunar Whisper",
       description: "Reflecting inner tranquility through glass that feels like moonlit ceramic."
     },
@@ -169,3 +169,4 @@ const ProductShowcase = () => {
 };
 
 export default ProductShowcase;
+
