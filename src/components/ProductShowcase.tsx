@@ -1,3 +1,4 @@
+
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
@@ -89,7 +90,7 @@ const ProductShowcase = () => {
       description: "Reflecting inner tranquility through glass that feels like moonlit ceramic."
     },
     {
-      image: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=2835&auto=format&fit=crop",
+      image: "/lovable-uploads/5f80813d-49f8-444b-a181-7b9154ea2f97.png",
       name: "Dune Symphony",
       description: "Where contoured glass captures the spirit of desert landscapes."
     },
