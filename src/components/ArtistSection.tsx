@@ -1,11 +1,9 @@
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { loadImage, removeBackground } from "../utils/imageProcessing";
 
 const ArtistSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [processedImage, setProcessedImage] = useState<string | null>(null);
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -15,20 +13,6 @@ const ArtistSection = () => {
   const opacity = useTransform(scrollYProgress, [0.1, 0.3, 0.7, 0.9], [0, 1, 1, 0]);
   const scale = useTransform(scrollYProgress, [0.1, 0.3, 0.7, 0.9], [0.95, 1, 1, 0.95]);
   const y = useTransform(scrollYProgress, [0.1, 0.3, 0.7, 0.9], [50, 0, 0, -50]);
-
-  useEffect(() => {
-    const processImage = async () => {
-      try {
-        const image = await loadImage("/lovable-uploads/0fc4b624-1f64-4e0a-a305-4a6e0af3f452.png");
-        const processed = await removeBackground(image);
-        setProcessedImage(processed);
-      } catch (error) {
-        console.error("Failed to process image:", error);
-      }
-    };
-
-    processImage();
-  }, []);
   
   return (
     <section 
@@ -43,17 +27,11 @@ const ArtistSection = () => {
         className="w-full md:w-1/2 h-[50vh] md:h-full relative overflow-hidden"
         style={{ opacity, scale }}
       >
-        {processedImage ? (
-          <img
-            src={processedImage}
-            alt="Artistic ceramic vase with red cat design"
-            className="absolute w-full h-full object-contain"
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 border-4 border-white/20 border-t-white/80 rounded-full animate-spin"></div>
-          </div>
-        )}
+        <img
+          src="/lovable-uploads/0fc4b624-1f64-4e0a-a305-4a6e0af3f452.png"
+          alt="Artistic ceramic vase with red cat design"
+          className="absolute w-full h-full object-contain"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-vasee-dark to-transparent z-10"></div>
       </motion.div>
