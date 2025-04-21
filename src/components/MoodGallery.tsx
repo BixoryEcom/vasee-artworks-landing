@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -29,8 +30,8 @@ const MoodGallery = () => {
             transition={{ duration: 0.3 }}
           >
             <img
-              src="https://images.unsplash.com/photo-1618224483425-ca09b712989f?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Modern vase on a shelf"
+              src="/lovable-uploads/3d10acdb-be5d-4b02-b927-d519f241e9e5.png"
+              alt="Artistic vase with dried sunflowers"
               className="w-full h-[500px] object-cover transition-transform duration-300 group-hover:brightness-110"
             />
             <div className="absolute inset-0 bg-black/20 mix-blend-multiply"></div>
