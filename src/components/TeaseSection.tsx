@@ -1,9 +1,10 @@
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const TeaseSection = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
   
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -14,6 +15,10 @@ const TeaseSection = () => {
   const scale = useTransform(scrollYProgress, [0.3, 0.5], [0.8, 1]);
   const glow = useTransform(scrollYProgress, [0.3, 0.5], [0, 30]);
   const rotate = useTransform(scrollYProgress, [0.3, 0.6], [0, 5]);
+  
+  // More reliable image URL with fallback
+  const imageUrl = "https://images.pexels.com/photos/1145720/pexels-photo-1145720.jpeg?auto=compress&cs=tinysrgb&w=800";
+  const fallbackUrl = "https://images.pexels.com/photos/3651820/pexels-photo-3651820.jpeg?auto=compress&cs=tinysrgb&w=800";
   
   return (
     <section ref={ref} className="relative h-[50vh] bg-vasee-dark flex items-center justify-center overflow-hidden">
@@ -29,10 +34,20 @@ const TeaseSection = () => {
         }}
         className="absolute w-[300px] h-[300px] md:w-[400px] md:h-[400px] animate-glow-pulse"
       >
+        {!imageLoaded && (
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="w-20 h-20 rounded-full border-t-2 border-b-2 border-white animate-spin"></div>
+          </div>
+        )}
         <img 
-          src="https://images.unsplash.com/photo-1631125915902-761c0ab9106a?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3" 
+          src={imageUrl}
           alt="Glowing Vasee silhouette" 
-          className="w-full h-full object-contain opacity-50"
+          className={`w-full h-full object-contain opacity-50 transition-opacity duration-500 ${imageLoaded ? 'opacity-50' : 'opacity-0'}`}
+          onLoad={() => setImageLoaded(true)}
+          onError={(e) => {
+            // If primary image fails, try fallback
+            (e.target as HTMLImageElement).src = fallbackUrl;
+          }}
         />
       </motion.div>
       
