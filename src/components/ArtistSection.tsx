@@ -19,7 +19,7 @@ const ArtistSection = () => {
   useEffect(() => {
     const processImage = async () => {
       try {
-        const image = await loadImage("/lovable-uploads/73390a27-545b-4778-821a-09e948195494.png");
+        const image = await loadImage("/lovable-uploads/0fc4b624-1f64-4e0a-a305-4a6e0af3f452.png");
         const processed = await removeBackground(image);
         setProcessedImage(processed);
       } catch (error) {
@@ -80,3 +80,4 @@ const ArtistSection = () => {
 };
 
 export default ArtistSection;
+
