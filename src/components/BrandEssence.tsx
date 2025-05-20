@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import AnimatedText from "./AnimatedText";
@@ -141,6 +140,29 @@ const BrandEssence = () => {
           }}
         />
       </div>
+
+      {/* Responsive Design */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .py-24 {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+          }
+          .md\\:py-32 {
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+          }
+          .text-xl {
+            font-size: 1.25rem;
+          }
+          .md\\:text-2xl {
+            font-size: 1.5rem;
+          }
+          .lg\\:text-3xl {
+            font-size: 1.875rem;
+          }
+        }
+      `}</style>
     </section>
   );
 };

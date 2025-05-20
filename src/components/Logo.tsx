@@ -84,28 +84,6 @@ const Logo = ({ className = '' }: { className?: string }) => {
           <div className="absolute inset-0 animate-sweep-light" />
         </motion.div>
       </motion.div>
-      
-      <motion.div 
-        className="mt-4 font-maison tracking-widest text-4xl md:text-5xl font-bold uppercase relative overflow-hidden"
-        style={{ 
-          background: `linear-gradient(90deg, 
-            #cb6ce6 0%, 
-            #9b87f5 25%, 
-            #D6BCFA 50%, 
-            #9b87f5 75%, 
-            #cb6ce6 100%)`,
-          backgroundSize: '200% 100%',
-          backgroundPosition: `${gradientPosition}% 0`,
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          textTransform: 'uppercase'
-        }}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 1 }}
-      >
-        VASEE ART
-      </motion.div>
     </motion.div>
   );
 };
