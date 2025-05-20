@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
@@ -166,6 +165,28 @@ const ProductShowcase = () => {
           </button>
         </div>
       </motion.div>
+
+      {/* Responsive Design */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .py-20 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+          }
+          .text-3xl {
+            font-size: 1.875rem;
+          }
+          .md\\:text-4xl {
+            font-size: 2.25rem;
+          }
+          .h-[50vh] {
+            height: 30vh;
+          }
+          .md\\:h-[60vh] {
+            height: 40vh;
+          }
+        }
+      `}</style>
     </section>
   );
 };

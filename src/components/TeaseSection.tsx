@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -59,6 +58,36 @@ const TeaseSection = () => {
           Stories in glass. Emotions in form. Coming soon.
         </h2>
       </motion.div>
+
+      {/* Responsive Design */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .h-[50vh] {
+            height: 40vh;
+          }
+          .w-[300px] {
+            width: 200px;
+          }
+          .h-[300px] {
+            height: 200px;
+          }
+          .md\\:w-[400px] {
+            width: 300px;
+          }
+          .md\\:h-[400px] {
+            height: 300px;
+          }
+          .text-2xl {
+            font-size: 1.5rem;
+          }
+          .md\\:text-3xl {
+            font-size: 2rem;
+          }
+          .lg\\:text-4xl {
+            font-size: 2.5rem;
+          }
+        }
+      `}</style>
     </section>
   );
 };

@@ -50,6 +50,37 @@ const MoodGallery = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Responsive Design */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .py-16 {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+          }
+          .md\\:py-24 {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+          }
+          .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+          .md\\:px-8 {
+            padding-left: 2rem;
+            padding-right: 2rem;
+          }
+          .text-3xl {
+            font-size: 1.875rem;
+          }
+          .md\\:text-4xl {
+            font-size: 2.25rem;
+          }
+          .h-[500px] {
+            height: 300px;
+          }
+        }
+      `}</style>
     </section>
   );
 };

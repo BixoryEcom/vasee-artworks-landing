@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { useAnimation } from "framer-motion";
 import VideoBackground from "./hero/VideoBackground";
@@ -43,6 +42,28 @@ const Hero = () => {
           <HeroBanner />
         </div>
       </div>
+
+      {/* Responsive Design */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .h-screen {
+            height: 100vh;
+          }
+          .py-8 {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+          }
+          .text-4xl {
+            font-size: 2.25rem;
+          }
+          .md\\:text-6xl {
+            font-size: 3.75rem;
+          }
+          .lg\\:text-7xl {
+            font-size: 4.5rem;
+          }
+        }
+      `}</style>
     </section>
   );
 };

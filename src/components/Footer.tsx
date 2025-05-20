@@ -65,6 +65,26 @@ const Footer = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Responsive Design */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .py-20 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+          }
+          .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+          }
+          .text-lg {
+            font-size: 1.125rem;
+          }
+          .text-sm {
+            font-size: 0.875rem;
+          }
+        }
+      `}</style>
     </footer>
   );
 };
