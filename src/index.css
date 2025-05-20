@@ -166,6 +166,9 @@
   }
 }
 
+<<<<<<optimize-responsive-design-3b3
+/* Responsive Design */
+>>>>>> main
 @media (max-width: 768px) {
   body {
     @apply p-4;
