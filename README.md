@@ -50,6 +50,22 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
+## How can I view the page in the browser?
+
+To view the page in the browser, follow these steps:
+
+1. Ensure you have completed the steps to start the development server as mentioned above.
+2. Open your preferred web browser.
+3. Navigate to `http://localhost:3000` (or the port specified in your development server configuration).
+
+## How can I view the effect of changes in a Github Page URL?
+
+To view the effect of changes in a Github Page URL, follow these steps:
+
+1. Ensure you have pushed your changes to the main branch of your repository.
+2. Open your preferred web browser.
+3. Navigate to `https://<YOUR_GITHUB_USERNAME>.github.io/<YOUR_REPOSITORY_NAME>` (replace `<YOUR_GITHUB_USERNAME>` and `<YOUR_REPOSITORY_NAME>` with your actual GitHub username and repository name).
+
 ## What technologies are used for this project?
 
 This project is built with:

@@ -1,4 +1,3 @@
-
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -53,9 +52,29 @@ const ArtistSection = () => {
           </p>
         </div>
       </motion.div>
+
+      {/* Responsive Design */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .w-full {
+            padding: 1rem;
+          }
+          .text-2xl {
+            font-size: 1.5rem;
+          }
+          .text-3xl {
+            font-size: 2rem;
+          }
+          .text-4xl {
+            font-size: 2.5rem;
+          }
+          .text-5xl {
+            font-size: 3rem;
+          }
+        }
+      `}</style>
     </section>
   );
 };
 
 export default ArtistSection;
-
