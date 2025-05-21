@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 
 interface ProductCardProps {
@@ -8,66 +8,112 @@ interface ProductCardProps {
   description: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ image, name, description }) => {
+const ProductCard = ({ image, name, description }: ProductCardProps) => {
   const [hovered, setHovered] = useState(false);
-  const [imageError, setImageError] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
+  const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [0, 2, 0]);
+
+  const handleTouchStart = () => {
+    setTouched(true);
+  };
+
+  const handleTouchEnd = () => {
+    setTouched(false);
+  };
 
   return (
     <motion.div
-      className="flex-shrink-0 w-[85vw] md:w-[55vw] lg:w-[40vw] xl:w-[30vw] mx-5 magnetic-item"
-      whileHover={{ 
-        scale: 1.03,
-        transition: { duration: 0.3 }
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      ref={cardRef}
+      style={{ y, opacity, scale, rotate }}
+      className="relative mx-4 w-[280px] md:w-[320px] flex-shrink-0"
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
-      <div className="relative overflow-hidden rounded-sm">
-        <motion.img
-          animate={{ 
-            scale: hovered ? 1.05 : 1,
-            rotateX: hovered ? 2 : 0,
-            rotateY: hovered ? -2 : 0
+      <motion.div
+        className="relative bg-vasee-charcoal/50 backdrop-blur-sm rounded-lg overflow-hidden border border-white/10"
+        animate={{
+          scale: hovered || touched ? 1.05 : 1,
+          boxShadow: hovered || touched ? "0 0 20px rgba(155, 135, 245, 0.3)" : "none",
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        <motion.div
+          className="relative h-[400px] overflow-hidden"
+          animate={{
+            scale: hovered || touched ? 1.1 : 1,
           }}
           transition={{ duration: 0.4 }}
-          src={imageError ? "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=2835&auto=format&fit=crop" : image}
-          alt={name}
-          className="w-full h-[50vh] md:h-[60vh] object-cover"
-          onError={() => setImageError(true)}
-        />
-        {hovered && (
-          <motion.div 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
-            className="absolute inset-0 bg-gradient-to-t from-vasee-vibrant/40 via-transparent to-transparent"
+        >
+          <motion.img
+            src={image}
+            alt={name}
+            className="w-full h-full object-cover"
+            initial={{ scale: 1 }}
+            animate={{
+              scale: hovered || touched ? 1.1 : 1,
+              filter: hovered || touched ? "brightness(1.1)" : "brightness(1)"
+            }}
+            transition={{ duration: 0.4 }}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1593592023995-a8a4ffd6153d?q=80&w=2874&auto=format&fit=crop";
+            }}
           />
-        )}
-      </div>
-      <motion.div 
-        className="mt-4 text-center"
-        animate={{
-          y: hovered ? -5 : 0,
-          transition: { duration: 0.3 }
-        }}
-      >
-        <motion.h3 
-          className="text-2xl font-maison font-light text-white"
-          animate={{
-            color: hovered ? "#9b87f5" : "#ffffff",
-            transition: { duration: 0.3 }
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"
+            initial={{ opacity: 0.6 }}
+            animate={{ 
+              opacity: hovered || touched ? 0.8 : 0.6,
+              background: hovered || touched ? 
+                "linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4), transparent)" : 
+                "linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4), transparent)"
+            }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 p-6 text-white"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ 
+            y: 0, 
+            opacity: 1,
+            transform: hovered || touched ? "translateY(-5px)" : "translateY(0)"
           }}
+          transition={{ duration: 0.4, delay: 0.2 }}
         >
-          {name}
-        </motion.h3>
-        <motion.p 
-          className="mt-2 text-vasee-gray"
-          animate={{
-            opacity: hovered ? 1 : 0.7,
-            transition: { duration: 0.3 }
-          }}
-        >
-          {description}
-        </motion.p>
+          <motion.h3
+            className="text-xl font-maison mb-2"
+            animate={{
+              color: hovered || touched ? "#9b87f5" : "white",
+              textShadow: hovered || touched ? "0 0 10px rgba(155, 135, 245, 0.5)" : "none",
+              scale: hovered || touched ? 1.05 : 1
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            {name}
+          </motion.h3>
+          <motion.p
+            className="text-sm text-gray-300"
+            animate={{
+              opacity: hovered || touched ? 1 : 0.8,
+              y: hovered || touched ? -2 : 0
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            {description}
+          </motion.p>
+        </motion.div>
       </motion.div>
     </motion.div>
   );
@@ -75,35 +121,34 @@ const ProductCard: React.FC<ProductCardProps> = ({ image, name, description }) =
 
 const ProductShowcase = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const scrollWidth = scrollRef.current?.scrollWidth || 0;
-  const clientWidth = scrollRef.current?.clientWidth || 0;
-  const maxScroll = scrollWidth - clientWidth;
-  
-  const scrollLeft = () => {
-    if (!scrollRef.current) return;
-    const newPosition = Math.max(scrollPosition - clientWidth / 2, 0);
-    scrollRef.current.scrollTo({
-      left: newPosition,
-      behavior: "smooth",
-    });
-    setScrollPosition(newPosition);
-  };
+  const [clientWidth, setClientWidth] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const scrollRight = () => {
-    if (!scrollRef.current) return;
-    const newPosition = Math.min(scrollPosition + clientWidth / 2, maxScroll);
-    scrollRef.current.scrollTo({
-      left: newPosition,
-      behavior: "smooth",
-    });
-    setScrollPosition(newPosition);
-  };
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    setScrollPosition(e.currentTarget.scrollLeft);
-  };
-  
+  // Update dimensions on mount and resize
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (scrollRef.current) {
+        setClientWidth(scrollRef.current.clientWidth);
+      }
+    };
+
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
+
   const products = [
     {
       image: "/lovable-uploads/3f6e8f11-768b-429b-b725-11451a8fbed4.png",
@@ -121,72 +166,72 @@ const ProductShowcase = () => {
       description: "Resonating with memories through our patented glass-ceramic fusion."
     },
     {
-      image: "https://images.unsplash.com/photo-1612196808214-b40b912365e4?q=80&w=2874&auto=format&fit=crop",
+      image: "/lovable-uploads/1e0e4147-a87b-4053-8eca-46d151679d13.png",
       name: "Terra Illuminate",
       description: "Earthen textures captured in luminous, translucent glass."
     },
     {
-      image: "https://images.unsplash.com/photo-1593592023995-a8a4ffd6153d?q=80&w=2874&auto=format&fit=crop",
+      image: "/lovable-uploads/1a01d6c2-2237-4ddb-a459-4551d3e1cdc4.png",
       name: "Aura Vessel",
       description: "Embodying emotion through our revolutionary glass fabrication."
     }
   ];
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-  
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
-
   return (
-    <section ref={containerRef} id="emotional-glass-collection" className="relative min-h-screen py-20 bg-vasee-dark">
+    <section id="emotional-glass-collection" className="relative min-h-screen py-20 bg-vasee-dark">
       <div className="grain-overlay"></div>
       <div className="vignette"></div>
-      <motion.div style={{ opacity }} className="container mx-auto px-4 mb-12">
+      <div className="container mx-auto px-4 mb-12">
         <h2 className="text-3xl md:text-4xl font-maison font-light text-white text-center mb-2 text-glow">
           Emotional Glass Collection
         </h2>
         <p className="text-vasee-gray text-center mb-10">
           Revolutionary glass vessels with ceramic soul, each telling a unique story.
         </p>
-      </motion.div>
+      </div>
 
-      <motion.div style={{ y, opacity }} className="relative">
-        <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 md:flex hidden">
-          <button 
-            onClick={scrollLeft} 
-            className="p-3 rounded-full bg-black/40 backdrop-blur-lg text-white/70 hover:text-white hover:bg-vasee-vibrant/30 transition-all"
-          >
-            <ArrowLeft size={20} />
-          </button>
-        </div>
-        
+      <div className="relative overflow-hidden">
         <div 
           ref={scrollRef}
-          className="flex overflow-x-auto scrollbar-none py-10 snap-x"
-          onScroll={handleScroll}
+          className="flex overflow-x-auto scrollbar-none py-10"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           <div className="flex-shrink-0 w-10 md:w-[10vw]"></div>
-          {products.map((product, index) => (
-            <div key={index} className="snap-center">
-              <ProductCard {...product} />
-            </div>
-          ))}
+          <motion.div 
+            className="flex"
+            animate={{
+              x: [0, -clientWidth * 0.8 * products.length],
+            }}
+            transition={{
+              duration: 120,
+              ease: "linear",
+              repeat: Infinity,
+              repeatType: "loop",
+              repeatDelay: 0
+            }}
+          >
+            {[...products, ...products, ...products].map((product, index) => (
+              <motion.div 
+                key={index} 
+                className="snap-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1,
+                  transition: {
+                    duration: 0.5,
+                    delay: index * 0.1
+                  }
+                }}
+              >
+                <ProductCard {...product} />
+              </motion.div>
+            ))}
+          </motion.div>
           <div className="flex-shrink-0 w-10 md:w-[10vw]"></div>
         </div>
-        
-        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 md:flex hidden">
-          <button 
-            onClick={scrollRight}
-            className="p-3 rounded-full bg-black/40 backdrop-blur-lg text-white/70 hover:text-white hover:bg-vasee-vibrant/30 transition-all"
-          >
-            <ArrowRight size={20} />
-          </button>
-        </div>
-      </motion.div>
+      </div>
 
       {/* Responsive Design */}
       <style>{`
