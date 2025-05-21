@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAnimation, motion } from "framer-motion";
-import VideoBackground from "./hero/VideoBackground";
+import AnimatedBackground from "./hero/AnimatedBackground";
 import FloatingParticles from "./hero/FloatingParticles";
 import AnimatedLightOrbs from "./hero/AnimatedLightOrbs";
 import HeroLogo from "./hero/HeroLogo";
@@ -19,22 +19,28 @@ const Hero = () => {
   }, [controls]);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
-      {/* Video Background */}
-      <VideoBackground />
+    <section className="relative w-full min-h-screen overflow-hidden py-12 flex items-center justify-center">
+      {/* Animated Background */}
+      <div className="absolute inset-0 z-0">
+        <AnimatedBackground />
+      </div>
       
       {/* Floating particles */}
-      <FloatingParticles />
+      <div className="absolute inset-0 z-10">
+        <FloatingParticles />
+      </div>
       
       {/* Animated light orbs */}
-      <AnimatedLightOrbs />
+      <div className="absolute inset-0 z-10">
+        <AnimatedLightOrbs />
+      </div>
 
-      {/* Main hero content container - restructured for better layout */}
-      <div className="relative z-20 w-full h-full flex flex-col items-center justify-between py-8">
+      {/* Main hero content container - centered layout, extra padding */}
+      <div className="relative z-20 w-full flex flex-col items-center justify-center gap-8">
         {/* Brand name above the logo, large and prominent */}
         <div className="w-full flex justify-center mt-12 md:mt-20">
           <motion.div 
-            className="font-maison tracking-widest text-5xl md:text-7xl font-bold uppercase relative overflow-hidden text-center mb-4 text-glow animate-fade-in-up"
+            className="font-maison tracking-widest text-6xl md:text-8xl font-bold uppercase relative overflow-hidden text-center mb-4 text-glow animate-fade-in-up"
             style={{ 
               background: `linear-gradient(90deg, #cb6ce6 0%, #9b87f5 25%, #D6BCFA 50%, #9b87f5 75%, #cb6ce6 100%)`,
               backgroundSize: '200% 100%',
@@ -66,19 +72,23 @@ const Hero = () => {
         </div>
         
         {/* Logo below the brand name */}
-        <HeroLogo />
+        <div className="relative z-20">
+          <HeroLogo />
+        </div>
         
         {/* Content in the middle */}
-        <HeroContent />
+        <div className="relative z-20">
+          <HeroContent />
+        </div>
         
         {/* Banner at the bottom */}
-        <div className="w-full max-w-6xl mx-auto mt-8">
+        <div className="relative z-20 w-full max-w-6xl mx-auto mt-8">
           <HeroBanner />
         </div>
       </div>
 
       {/* Responsive Design */}
-      <style jsx>{`
+      <style>{`
         @media (max-width: 768px) {
           .h-screen {
             height: 100vh;
