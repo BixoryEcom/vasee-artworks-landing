@@ -5,7 +5,7 @@ import Logo from "./Logo";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-vasee-dark py-20 px-6">
+    <footer className="relative bg-vasee-dark py-12 md:py-20 px-4 md:px-6 mt-auto">
       <div className="grain-overlay"></div>
       <div className="vignette"></div>
       

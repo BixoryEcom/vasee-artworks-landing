@@ -34,7 +34,7 @@ const ProductCard = ({ image, name, description }: ProductCardProps) => {
     <motion.div
       ref={cardRef}
       style={{ y, opacity, scale, rotate }}
-      className="relative mx-4 w-[280px] md:w-[320px] flex-shrink-0"
+      className="relative mx-2 md:mx-4 w-[240px] md:w-[320px] flex-shrink-0"
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       onTouchStart={handleTouchStart}
@@ -49,7 +49,7 @@ const ProductCard = ({ image, name, description }: ProductCardProps) => {
         transition={{ duration: 0.3 }}
       >
         <motion.div
-          className="relative h-[400px] overflow-hidden"
+          className="relative h-[300px] md:h-[400px] overflow-hidden"
           animate={{
             scale: hovered || touched ? 1.1 : 1,
           }}
@@ -83,7 +83,7 @@ const ProductCard = ({ image, name, description }: ProductCardProps) => {
         </motion.div>
         
         <motion.div
-          className="absolute bottom-0 left-0 right-0 p-6 text-white"
+          className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white"
           initial={{ y: 20, opacity: 0 }}
           animate={{ 
             y: 0, 
@@ -93,7 +93,7 @@ const ProductCard = ({ image, name, description }: ProductCardProps) => {
           transition={{ duration: 0.4, delay: 0.2 }}
         >
           <motion.h3
-            className="text-xl font-maison mb-2"
+            className="text-lg md:text-xl font-maison mb-1 md:mb-2"
             animate={{
               color: hovered || touched ? "#9b87f5" : "white",
               textShadow: hovered || touched ? "0 0 10px rgba(155, 135, 245, 0.5)" : "none",
@@ -104,7 +104,7 @@ const ProductCard = ({ image, name, description }: ProductCardProps) => {
             {name}
           </motion.h3>
           <motion.p
-            className="text-sm text-gray-300"
+            className="text-xs md:text-sm text-gray-300"
             animate={{
               opacity: hovered || touched ? 1 : 0.8,
               y: hovered || touched ? -2 : 0
@@ -178,7 +178,7 @@ const ProductShowcase = () => {
   ];
 
   return (
-    <section id="emotional-glass-collection" className="relative min-h-screen py-20 bg-vasee-dark">
+    <section id="emotional-glass-collection" className="relative py-20 bg-vasee-dark">
       <div className="grain-overlay"></div>
       <div className="vignette"></div>
       <div className="container mx-auto px-4 mb-12">
@@ -237,20 +237,28 @@ const ProductShowcase = () => {
       <style>{`
         @media (max-width: 768px) {
           .py-20 {
-            padding-top: 5rem;
-            padding-bottom: 5rem;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
           }
           .text-3xl {
-            font-size: 1.875rem;
+            font-size: 1.5rem;
           }
           .md\\:text-4xl {
-            font-size: 2.25rem;
+            font-size: 2rem;
           }
           .h-[50vh] {
             height: 30vh;
           }
           .md\\:h-[60vh] {
             height: 40vh;
+          }
+          .container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+          .mx-4 {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
           }
         }
       `}</style>

@@ -19,7 +19,7 @@ const Hero = () => {
   }, [controls]);
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden py-12 flex items-center justify-center">
+    <section className="relative w-full min-h-[90vh] md:min-h-screen overflow-hidden py-8 md:py-12 flex items-center justify-center">
       {/* Animated Background */}
       <div className="absolute inset-0 z-0">
         <AnimatedBackground />
@@ -36,11 +36,11 @@ const Hero = () => {
       </div>
 
       {/* Main hero content container - centered layout, extra padding */}
-      <div className="relative z-20 w-full flex flex-col items-center justify-center gap-8">
+      <div className="relative z-20 w-full flex flex-col items-center justify-center gap-4 md:gap-8">
         {/* Brand name above the logo, large and prominent */}
-        <div className="w-full flex justify-center mt-12 md:mt-20">
+        <div className="w-full flex justify-center mt-8 md:mt-20">
           <motion.div 
-            className="font-maison tracking-widest text-6xl md:text-8xl font-bold uppercase relative overflow-hidden text-center mb-4 text-glow animate-fade-in-up"
+            className="font-maison tracking-widest text-4xl md:text-6xl lg:text-8xl font-bold uppercase relative overflow-hidden text-center mb-2 md:mb-4 text-glow animate-fade-in-up"
             style={{ 
               background: `linear-gradient(90deg, #cb6ce6 0%, #9b87f5 25%, #D6BCFA 50%, #9b87f5 75%, #cb6ce6 100%)`,
               backgroundSize: '200% 100%',

@@ -4,9 +4,9 @@ import { ArrowRight } from "lucide-react";
 
 const HeroContent = () => {
   return (
-    <div className="flex flex-col justify-center items-center px-4 text-center my-8">
+    <div className="flex flex-col justify-center items-center px-4 text-center my-2 md:my-8">
       <motion.div 
-        className="overflow-hidden max-w-3xl mb-10"
+        className="overflow-hidden max-w-3xl mb-4 md:mb-10"
         whileHover={{
           scale: 1.02,
           transition: { duration: 0.3 }
@@ -39,7 +39,7 @@ const HeroContent = () => {
           scale: 1.05,
           transition: { duration: 0.3 }
         }}
-        className="mt-8"
+        className="mt-4 md:mt-8"
       >
         <motion.a
           href="#emotional-glass-collection"

@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import Hero from "@/components/Hero";
 import BrandEssence from "@/components/BrandEssence";
@@ -18,7 +17,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="bg-vasee-dark text-white min-h-screen">
+    <div className="bg-vasee-dark text-white min-h-screen flex flex-col">
       <Hero />
       <ScrollIndicator />
       <BrandEssence />

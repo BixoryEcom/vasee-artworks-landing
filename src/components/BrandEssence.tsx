@@ -84,7 +84,7 @@ const BrandEssence = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-24 md:py-32 bg-vasee-charcoal overflow-hidden"
+      className="relative w-full py-12 md:py-24 lg:py-32 bg-vasee-charcoal overflow-hidden"
     >
       <div className="grain-overlay"></div>
       <div className="vignette"></div>
@@ -119,16 +119,16 @@ const BrandEssence = () => {
         transition={{ duration: 60, ease: "linear", repeat: Infinity }}
       />
       
-      <div className="container relative z-10 mx-auto px-6 max-w-4xl">
+      <div className="container relative z-10 mx-auto px-4 md:px-6 max-w-4xl pt-4 md:pt-0">
         <AnimatedText
           text="At VASEE, we craft emotional vessels through our revolutionary glass fabrication process that captures the essence of ceramic with the elegance of glass. Each piece tells its own story—an artistic dialogue between material and meaning. Our vases aren't merely containers, but storytellers in your space—transformative objects that resonate with your spirit while elevating your surroundings through their thoughtful presence and artistic vision."
-          className="font-maison text-xl md:text-2xl lg:text-3xl font-light leading-relaxed text-white/90 text-center"
+          className="font-maison text-base md:text-xl lg:text-2xl font-light leading-relaxed text-white/90 text-center"
           threshold={0.25}
         />
         
         {/* Animated underline */}
         <motion.div 
-          className="w-20 h-px bg-vasee-vibrant/60 mx-auto mt-10"
+          className="w-20 h-px bg-vasee-vibrant/60 mx-auto mt-6 md:mt-10"
           animate={{ 
             width: ["5%", "20%", "5%"],
             opacity: [0.4, 0.8, 0.4]
@@ -145,21 +145,22 @@ const BrandEssence = () => {
       <style jsx>{`
         @media (max-width: 768px) {
           .py-24 {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+          }
+          .md\\:py-32 {
             padding-top: 6rem;
             padding-bottom: 6rem;
           }
-          .md\\:py-32 {
-            padding-top: 8rem;
-            padding-bottom: 8rem;
+          .text-base {
+            font-size: 1rem;
+            line-height: 1.6;
           }
-          .text-xl {
+          .md\\:text-xl {
             font-size: 1.25rem;
           }
-          .md\\:text-2xl {
+          .lg\\:text-2xl {
             font-size: 1.5rem;
-          }
-          .lg\\:text-3xl {
-            font-size: 1.875rem;
           }
         }
       `}</style>
