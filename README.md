@@ -87,3 +87,12 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## Documentation
+
+Project documentation is stored in the `docs` directory:
+
+- `docs/PRD.md` - Product Requirements Document
+- `docs/OPTIMIZATION.md` - Performance optimization guidelines
+
+For detailed information about the project requirements and specifications, please refer to these documents.
