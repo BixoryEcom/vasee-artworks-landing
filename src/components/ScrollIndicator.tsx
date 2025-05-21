@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
@@ -15,8 +14,32 @@ const ScrollIndicator = () => {
         repeat: Infinity,
         repeatType: "reverse"
       }}
+      whileHover={{
+        scale: 1.2,
+        transition: { duration: 0.2 }
+      }}
     >
-      <ArrowDown className="text-white h-6 w-6 opacity-75 hover:text-vasee-vibrant hover:opacity-100 transition-colors" />
+      <motion.div
+        className="relative"
+        whileHover={{
+          y: 5,
+          transition: { duration: 0.3 }
+        }}
+      >
+        <motion.div
+          className="absolute inset-0 bg-vasee-vibrant/20 rounded-full blur-lg"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.5, 0.8, 0.5],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <ArrowDown className="relative text-white h-6 w-6 opacity-75 hover:text-vasee-vibrant hover:opacity-100 transition-colors" />
+      </motion.div>
     </motion.div>
   );
 };

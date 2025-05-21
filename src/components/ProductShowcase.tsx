@@ -43,10 +43,32 @@ const ProductCard: React.FC<ProductCardProps> = ({ image, name, description }) =
           />
         )}
       </div>
-      <div className="mt-4 text-center">
-        <h3 className="text-2xl font-maison font-light text-white">{name}</h3>
-        <p className="mt-2 text-vasee-gray">{description}</p>
-      </div>
+      <motion.div 
+        className="mt-4 text-center"
+        animate={{
+          y: hovered ? -5 : 0,
+          transition: { duration: 0.3 }
+        }}
+      >
+        <motion.h3 
+          className="text-2xl font-maison font-light text-white"
+          animate={{
+            color: hovered ? "#9b87f5" : "#ffffff",
+            transition: { duration: 0.3 }
+          }}
+        >
+          {name}
+        </motion.h3>
+        <motion.p 
+          className="mt-2 text-vasee-gray"
+          animate={{
+            opacity: hovered ? 1 : 0.7,
+            transition: { duration: 0.3 }
+          }}
+        >
+          {description}
+        </motion.p>
+      </motion.div>
     </motion.div>
   );
 };
@@ -120,7 +142,7 @@ const ProductShowcase = () => {
   const y = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen py-20 bg-vasee-dark">
+    <section ref={containerRef} id="emotional-glass-collection" className="relative min-h-screen py-20 bg-vasee-dark">
       <div className="grain-overlay"></div>
       <div className="vignette"></div>
       <motion.div style={{ opacity }} className="container mx-auto px-4 mb-12">
@@ -167,7 +189,7 @@ const ProductShowcase = () => {
       </motion.div>
 
       {/* Responsive Design */}
-      <style jsx>{`
+      <style>{`
         @media (max-width: 768px) {
           .py-20 {
             padding-top: 5rem;
