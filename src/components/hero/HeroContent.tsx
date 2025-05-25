@@ -13,7 +13,7 @@ const HeroContent = () => {
         }}
       >
         <motion.h1 
-          className="font-maison text-4xl md:text-6xl lg:text-7xl text-white font-light tracking-tight text-glow"
+          className="font-maison text-xl md:text-2xl lg:text-3xl text-white font-light tracking-tight text-glow"
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.6 }}

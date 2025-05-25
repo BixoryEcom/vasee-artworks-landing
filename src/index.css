@@ -51,6 +51,11 @@
   }
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 @font-face {
   font-family: 'Maison Neue';
   src: url('https://cdn.jsdelivr.net/gh/visualsudio/fonts/MaisonNeue-Book.woff2') format('woff2');
@@ -166,12 +171,9 @@
   }
 }
 
-<<<<<<optimize-responsive-design-3b3
-/* Responsive Design */
->>>>>> main
 @media (max-width: 768px) {
   body {
-    @apply p-4;
+    @apply p-0;
   }
   h1 {
     @apply text-3xl;

@@ -12,6 +12,7 @@ const Hero = () => {
   const controls = useAnimation();
   const [currentVideo, setCurrentVideo] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
   
   useEffect(() => {
     // Start animations
@@ -27,30 +28,54 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    // When currentVideo changes, play the new video
     if (videoRef.current) {
       videoRef.current.load();
-      videoRef.current.play();
     }
   }, [currentVideo]);
 
   return (
-    <section className="relative w-full min-h-[90vh] md:min-h-screen overflow-hidden pt-0 pb-8 md:pb-12 flex items-center justify-center">
+    <section className="relative w-full h-screen overflow-hidden">
       {/* Animated Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 h-full w-full">
         <video
           ref={videoRef}
           autoPlay
           loop={false}
-          muted
           playsInline
           className="w-full h-full object-cover"
           onEnded={handleVideoEnded}
+          muted={isMuted}
         >
           <source src={videoSources[currentVideo]} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
+      {/* Mute/Unmute Button - moved outside video container */}
+      <button
+        onClick={() => {
+          if (videoRef.current) {
+            videoRef.current.muted = !videoRef.current.muted;
+            setIsMuted(videoRef.current.muted);
+            if (!videoRef.current.muted) {
+              videoRef.current.play();
+            }
+          }
+        }}
+        className="absolute bottom-4 right-4 z-40 bg-black/40 hover:bg-black/60 text-white rounded-full p-2 transition-colors duration-200 shadow-md focus:outline-none"
+        aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+      >
+        {isMuted ? (
+          // Muted icon (simple SVG)
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l6 6m0-6l-6 6M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        ) : (
+          // Unmuted icon (simple SVG)
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+        )}
+      </button>
       
       {/* Floating particles */}
       <div className="absolute inset-0 z-10">
@@ -63,15 +88,15 @@ const Hero = () => {
       </div>
 
       {/* Main hero content container - centered layout, extra padding */}
-      <div className="relative z-20 w-full flex flex-col items-center justify-center gap-4 md:gap-8">
+      <div className="relative z-20 w-full h-full flex flex-col justify-between items-center">
         {/* Icon (logo) above the brand name */}
-        <div className="relative z-20">
+        <div className="relative z-20 mt-4">
           <HeroLogo />
         </div>
         {/* Brand name below the logo, large and prominent */}
-        <div className="w-full flex justify-center mt-8 md:mt-12">
+        <div className="w-full flex justify-center mt-2 mb-2">
           <motion.div 
-            className="font-maison tracking-widest text-4xl md:text-6xl lg:text-8xl font-bold uppercase relative overflow-hidden text-center mb-2 md:mb-4 text-glow animate-fade-in-up"
+            className="font-maison tracking-widest text-5xl md:text-7xl lg:text-8xl font-bold uppercase relative overflow-hidden text-center text-glow animate-fade-in-up"
             style={{ 
               background: `linear-gradient(90deg, #cb6ce6 0%, #9b87f5 25%, #D6BCFA 50%, #9b87f5 75%, #cb6ce6 100%)`,
               backgroundSize: '200% 100%',
@@ -101,14 +126,12 @@ const Hero = () => {
             />
           </motion.div>
         </div>
-        
         {/* Content in the middle */}
-        <div className="relative z-20">
+        <div className="relative z-20 mb-0">
           <HeroContent />
         </div>
-        
         {/* Banner at the bottom */}
-        <div className="relative z-20 w-full max-w-6xl mx-auto mt-8">
+        <div className="relative z-20 w-full max-w-6xl mx-auto mb-8">
           <HeroBanner />
         </div>
       </div>

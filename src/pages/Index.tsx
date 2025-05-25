@@ -12,12 +12,11 @@ const Index = () => {
   useEffect(() => {
     // Set dark mode explicitly
     document.documentElement.classList.add('dark');
-    // Set background color to extremely dark
-    document.body.style.backgroundColor = '#10131A';
+    // Removed body background color to prevent dark space above hero
   }, []);
 
   return (
-    <div className="bg-vasee-dark text-white min-h-screen flex flex-col">
+    <div className="text-white min-h-screen flex flex-col">
       <Hero />
       <ScrollIndicator />
       <BrandEssence />
