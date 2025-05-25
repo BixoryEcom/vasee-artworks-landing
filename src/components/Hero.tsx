@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAnimation, motion } from "framer-motion";
-import AnimatedBackground from "./hero/AnimatedBackground";
 import FloatingParticles from "./hero/FloatingParticles";
 import AnimatedLightOrbs from "./hero/AnimatedLightOrbs";
 import HeroLogo from "./hero/HeroLogo";
 import HeroBanner from "./hero/HeroBanner";
 import HeroContent from "./hero/HeroContent";
 
+const videoSources = ["/hero-bg.mp4", "/hero-bg2.mp4"];
+
 const Hero = () => {
   const controls = useAnimation();
+  const [currentVideo, setCurrentVideo] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
   
   useEffect(() => {
     // Start animations
@@ -18,11 +21,35 @@ const Hero = () => {
     });
   }, [controls]);
 
+  // Handle video end to switch to next video
+  const handleVideoEnded = () => {
+    setCurrentVideo((prev) => (prev + 1) % videoSources.length);
+  };
+
+  useEffect(() => {
+    // When currentVideo changes, play the new video
+    if (videoRef.current) {
+      videoRef.current.load();
+      videoRef.current.play();
+    }
+  }, [currentVideo]);
+
   return (
-    <section className="relative w-full min-h-[90vh] md:min-h-screen overflow-hidden py-8 md:py-12 flex items-center justify-center">
+    <section className="relative w-full min-h-[90vh] md:min-h-screen overflow-hidden pt-0 pb-8 md:pb-12 flex items-center justify-center">
       {/* Animated Background */}
       <div className="absolute inset-0 z-0">
-        <AnimatedBackground />
+        <video
+          ref={videoRef}
+          autoPlay
+          loop={false}
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+          onEnded={handleVideoEnded}
+        >
+          <source src={videoSources[currentVideo]} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
       
       {/* Floating particles */}
@@ -37,8 +64,12 @@ const Hero = () => {
 
       {/* Main hero content container - centered layout, extra padding */}
       <div className="relative z-20 w-full flex flex-col items-center justify-center gap-4 md:gap-8">
-        {/* Brand name above the logo, large and prominent */}
-        <div className="w-full flex justify-center mt-8 md:mt-20">
+        {/* Icon (logo) above the brand name */}
+        <div className="relative z-20">
+          <HeroLogo />
+        </div>
+        {/* Brand name below the logo, large and prominent */}
+        <div className="w-full flex justify-center mt-8 md:mt-12">
           <motion.div 
             className="font-maison tracking-widest text-4xl md:text-6xl lg:text-8xl font-bold uppercase relative overflow-hidden text-center mb-2 md:mb-4 text-glow animate-fade-in-up"
             style={{ 
@@ -69,11 +100,6 @@ const Hero = () => {
               transition={{ duration: 2.5, repeat: Infinity, ease: 'linear', delay: 0.5 }}
             />
           </motion.div>
-        </div>
-        
-        {/* Logo below the brand name */}
-        <div className="relative z-20">
-          <HeroLogo />
         </div>
         
         {/* Content in the middle */}
