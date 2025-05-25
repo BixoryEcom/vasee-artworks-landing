@@ -84,7 +84,7 @@ const BrandEssence = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-12 md:py-24 lg:py-32 bg-vasee-charcoal overflow-hidden"
+      className="relative w-full py-16 md:py-24 lg:py-32 bg-vasee-charcoal overflow-hidden"
     >
       <div className="grain-overlay"></div>
       <div className="vignette"></div>
@@ -142,16 +142,8 @@ const BrandEssence = () => {
       </div>
 
       {/* Responsive Design */}
-      <style jsx>{`
+      <style>{`
         @media (max-width: 768px) {
-          .py-24 {
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-          }
-          .md\\:py-32 {
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-          }
           .text-base {
             font-size: 1rem;
             line-height: 1.6;

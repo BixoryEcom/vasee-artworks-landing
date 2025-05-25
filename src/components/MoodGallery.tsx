@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const MoodGallery = () => {
   return (
-    <section className="bg-vasee-dark py-16 md:py-24 px-4 md:px-8">
+    <section className="bg-vasee-dark py-16 md:py-24 lg:py-32 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-maison font-light text-white/90 text-center mb-12">
           Emotional Glass in Your Space
@@ -52,7 +52,7 @@ const MoodGallery = () => {
       </div>
 
       {/* Responsive Design */}
-      <style jsx>{`
+      <style>{`
         @media (max-width: 768px) {
           .py-16 {
             padding-top: 4rem;

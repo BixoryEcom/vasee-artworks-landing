@@ -7,6 +7,7 @@ import MoodGallery from "@/components/MoodGallery";
 import TeaseSection from "@/components/TeaseSection";
 import Footer from "@/components/Footer";
 import ScrollIndicator from "@/components/ScrollIndicator";
+import SocialProof from "@/components/SocialProof";
 
 const Index = () => {
   useEffect(() => {
@@ -23,6 +24,7 @@ const Index = () => {
       <ProductShowcase />
       <ArtistSection />
       <MoodGallery />
+      <SocialProof />
       <TeaseSection />
       <Footer />
     </div>

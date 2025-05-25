@@ -20,7 +20,7 @@ const TeaseSection = () => {
   const fallbackUrl = "https://images.pexels.com/photos/3651820/pexels-photo-3651820.jpeg?auto=compress&cs=tinysrgb&w=800";
   
   return (
-    <section ref={ref} className="relative min-h-[300px] md:h-[50vh] bg-vasee-dark flex items-center justify-center overflow-hidden">
+    <section ref={ref} className="relative min-h-[300px] md:h-[50vh] bg-vasee-dark flex items-center justify-center overflow-hidden py-16 md:py-24 lg:py-32">
       <div className="grain-overlay"></div>
       <div className="vignette"></div>
       
@@ -60,7 +60,7 @@ const TeaseSection = () => {
       </motion.div>
 
       {/* Responsive Design */}
-      <style jsx>{`
+      <style>{`
         @media (max-width: 768px) {
           .h-[50vh] {
             height: 40vh;

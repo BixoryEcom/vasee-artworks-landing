@@ -169,6 +169,27 @@ html, body {
     @apply absolute inset-0 bg-gradient-to-b from-vasee-dark/20 via-transparent to-vasee-dark z-10;
     pointer-events: none;
   }
+
+  /* Gradient text for hero/brand name */
+  .gradient-text {
+    background: linear-gradient(90deg, #cb6ce6 0%, #9b87f5 25%, #D6BCFA 50%, #9b87f5 75%, #cb6ce6 100%);
+    background-size: 200% 100%;
+    background-position: 0% 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Glow effect for logo and hero text */
+  .vasee-glow {
+    filter: drop-shadow(0 4px 32px #cb6ce6aa) drop-shadow(0 1px 2px #0008);
+  }
+
+  /* Logo image glow (matches Logo.tsx) */
+  .logo-glow {
+    filter: drop-shadow(0 0 12px rgba(155, 135, 245, 0.8)) drop-shadow(0 0 20px rgba(177, 138, 255, 0.6));
+  }
 }
 
 @media (max-width: 768px) {

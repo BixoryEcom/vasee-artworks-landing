@@ -95,18 +95,8 @@ const Hero = () => {
         </div>
         {/* Brand name below the logo, large and prominent */}
         <div className="w-full flex justify-center mt-2 mb-2">
-          <motion.div 
-            className="font-maison tracking-widest text-5xl md:text-7xl lg:text-8xl font-bold uppercase relative overflow-hidden text-center text-glow animate-fade-in-up"
-            style={{ 
-              background: `linear-gradient(90deg, #cb6ce6 0%, #9b87f5 25%, #D6BCFA 50%, #9b87f5 75%, #cb6ce6 100%)`,
-              backgroundSize: '200% 100%',
-              backgroundPosition: '0% 0',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              filter: 'drop-shadow(0 4px 32px #cb6ce6aa) drop-shadow(0 1px 2px #0008)'
-            }}
+          <motion.div
+            className="font-maison tracking-widest text-5xl md:text-7xl lg:text-8xl font-bold uppercase relative overflow-hidden text-center gradient-text vasee-glow animate-fade-in-up"
             initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0, backgroundPosition: ['0% 0', '100% 0', '0% 0'] }}
             transition={{ duration: 2, delay: 0.1, backgroundPosition: { duration: 8, repeat: Infinity, ease: 'linear' } }}

@@ -41,33 +41,19 @@ const Logo = ({ className = '' }: { className?: string }) => {
         <motion.img 
           src="/lovable-uploads/fb253245-2a05-45a2-9954-4724b7319a22.png" 
           alt="VASEE ART Logo" 
-          className="h-40 w-40 md:h-48 md:w-48 object-contain"
-          style={{
-            filter: `drop-shadow(0 0 12px rgba(155, 135, 245, 0.8)) 
-                     drop-shadow(0 0 20px rgba(177, 138, 255, 0.6))`
-          }}
+          className="h-40 w-40 md:h-48 md:w-48 object-contain logo-glow"
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={{ 
             opacity: 1, 
             y: 0, 
-            scale: 1,
-            filter: [
-              'drop-shadow(0 0 6px rgba(155, 135, 245, 0.4))', 
-              'drop-shadow(0 0 20px rgba(177, 138, 255, 1))',
-              'drop-shadow(0 0 12px rgba(155, 135, 245, 0.8))'
-            ]
+            scale: 1
           }}
           transition={{ 
             duration: 1.2, 
             delay: 0.2,
             type: "spring",
             stiffness: 260, 
-            damping: 20,
-            filter: {
-              duration: 2,
-              repeat: 0,
-              ease: "easeInOut"
-            }
+            damping: 20
           }}
         />
         

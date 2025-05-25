@@ -5,7 +5,7 @@ import Logo from "./Logo";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-vasee-dark py-12 md:py-20 px-4 md:px-6 mt-auto">
+    <footer className="relative bg-vasee-dark py-16 md:py-24 lg:py-32 px-4 md:px-6 mt-auto">
       <div className="grain-overlay"></div>
       <div className="vignette"></div>
       
@@ -67,7 +67,7 @@ const Footer = () => {
       </div>
 
       {/* Responsive Design */}
-      <style jsx>{`
+      <style>{`
         @media (max-width: 768px) {
           .py-20 {
             padding-top: 5rem;

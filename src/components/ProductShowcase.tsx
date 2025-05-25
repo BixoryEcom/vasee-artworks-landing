@@ -11,6 +11,7 @@ interface ProductCardProps {
 const ProductCard = ({ image, name, description }: ProductCardProps) => {
   const [hovered, setHovered] = useState(false);
   const [touched, setTouched] = useState(false);
+  const [parallax, setParallax] = useState({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -22,12 +23,21 @@ const ProductCard = ({ image, name, description }: ProductCardProps) => {
   const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
   const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [0, 2, 0]);
 
-  const handleTouchStart = () => {
-    setTouched(true);
+  // Parallax effect on mouse move (desktop only)
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (window.innerWidth < 768) return;
+    const rect = (e.target as HTMLDivElement).getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20; // max 10px left/right
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20; // max 10px up/down
+    setParallax({ x, y });
   };
+  const handleMouseLeave = () => setParallax({ x: 0, y: 0 });
 
-  const handleTouchEnd = () => {
-    setTouched(false);
+  // Springy tap effect for mobile
+  const handleTap = () => {
+    if (window.innerWidth >= 768) return;
+    setTouched(true);
+    setTimeout(() => setTouched(false), 200);
   };
 
   return (
@@ -37,21 +47,29 @@ const ProductCard = ({ image, name, description }: ProductCardProps) => {
       className="relative mx-2 md:mx-4 w-[240px] md:w-[320px] flex-shrink-0"
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
+      onTouchStart={handleTap}
+      onTouchEnd={() => setTouched(false)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      tabIndex={0}
+      aria-label={`View details for ${name}`}
     >
       <motion.div
-        className="relative bg-vasee-charcoal/50 backdrop-blur-sm rounded-lg overflow-hidden border border-white/10"
+        className="relative glass-morphism bg-vasee-charcoal/50 rounded-lg overflow-hidden border border-white/10"
         animate={{
-          scale: hovered || touched ? 1.05 : 1,
-          boxShadow: hovered || touched ? "0 0 20px rgba(155, 135, 245, 0.3)" : "none",
+          scale: hovered || touched ? 1.07 : 1,
+          boxShadow: hovered || touched
+            ? "0 0 32px 8px rgba(155, 135, 245, 0.35), 0 2px 8px rgba(0,0,0,0.18)"
+            : "0 1.5px 6px rgba(0,0,0,0.10)",
+          x: parallax.x,
+          y: parallax.y
         }}
-        transition={{ duration: 0.3 }}
+        transition={{ type: "spring", stiffness: 200, damping: 18 }}
       >
         <motion.div
           className="relative h-[300px] md:h-[400px] overflow-hidden"
           animate={{
-            scale: hovered || touched ? 1.1 : 1,
+            scale: hovered || touched ? 1.12 : 1,
           }}
           transition={{ duration: 0.4 }}
         >
@@ -61,7 +79,7 @@ const ProductCard = ({ image, name, description }: ProductCardProps) => {
             className="w-full h-full object-cover"
             initial={{ scale: 1 }}
             animate={{
-              scale: hovered || touched ? 1.1 : 1,
+              scale: hovered || touched ? 1.12 : 1,
               filter: hovered || touched ? "brightness(1.1)" : "brightness(1)"
             }}
             transition={{ duration: 0.4 }}
@@ -72,23 +90,22 @@ const ProductCard = ({ image, name, description }: ProductCardProps) => {
           <motion.div
             className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"
             initial={{ opacity: 0.6 }}
-            animate={{ 
-              opacity: hovered || touched ? 0.8 : 0.6,
-              background: hovered || touched ? 
-                "linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4), transparent)" : 
-                "linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4), transparent)"
+            animate={{
+              opacity: hovered || touched ? 0.85 : 0.6,
+              background: hovered || touched
+                ? "linear-gradient(to top, rgba(0,0,0,0.92), rgba(0,0,0,0.5), transparent)"
+                : "linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4), transparent)"
             }}
             transition={{ duration: 0.3 }}
           />
         </motion.div>
-        
         <motion.div
           className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white"
           initial={{ y: 20, opacity: 0 }}
-          animate={{ 
-            y: 0, 
+          animate={{
+            y: 0,
             opacity: 1,
-            transform: hovered || touched ? "translateY(-5px)" : "translateY(0)"
+            transform: hovered || touched ? "translateY(-8px)" : "translateY(0)"
           }}
           transition={{ duration: 0.4, delay: 0.2 }}
         >
@@ -96,8 +113,8 @@ const ProductCard = ({ image, name, description }: ProductCardProps) => {
             className="text-lg md:text-xl font-maison mb-1 md:mb-2"
             animate={{
               color: hovered || touched ? "#9b87f5" : "white",
-              textShadow: hovered || touched ? "0 0 10px rgba(155, 135, 245, 0.5)" : "none",
-              scale: hovered || touched ? 1.05 : 1
+              textShadow: hovered || touched ? "0 0 16px rgba(155, 135, 245, 0.6)" : "none",
+              scale: hovered || touched ? 1.08 : 1
             }}
             transition={{ duration: 0.3 }}
           >
@@ -107,7 +124,7 @@ const ProductCard = ({ image, name, description }: ProductCardProps) => {
             className="text-xs md:text-sm text-gray-300"
             animate={{
               opacity: hovered || touched ? 1 : 0.8,
-              y: hovered || touched ? -2 : 0
+              y: hovered || touched ? -4 : 0
             }}
             transition={{ duration: 0.3 }}
           >
@@ -178,7 +195,7 @@ const ProductShowcase = () => {
   ];
 
   return (
-    <section id="emotional-glass-collection" className="relative py-20 bg-vasee-dark">
+    <section id="emotional-glass-collection" className="relative py-16 md:py-24 lg:py-32 bg-vasee-dark">
       <div className="grain-overlay"></div>
       <div className="vignette"></div>
       <div className="container mx-auto px-4 mb-12">
