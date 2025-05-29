@@ -1,5 +1,17 @@
 # Site Optimization & Modernization Plan
 
+## 2025-05-28: Codebase Review & New Optimization Suggestions
+
+- **Remove Unnecessary Routing:** Done (2025-05-28). Removed `react-router-dom` and NotFound page. Site tested and still looks good.
+- **Font Consistency:** Done (2025-05-28). Added Inter font for body text and set Maison Neue for headings, per requirements.
+- **Remove Unused Dependencies:** Done (2025-05-28). Uninstalled `@tanstack/react-query`—no longer present in the codebase.
+- **Component Documentation:** Components are well-organized. Consider adding README files in component folders to document their purpose for future contributors.
+- **Ongoing Performance Monitoring:** Continue to monitor bundle size, load times, and use tools like Lighthouse for audits as new features are added.
+- **Accessibility & SEO:** Periodically test accessibility (screen readers, keyboard navigation) and ensure meta tags are dynamic and relevant.
+- **Legal & Content Hierarchy:** Ensure footer legal text is up-to-date and semantic headings are used for accessibility and SEO.
+
+---
+
 This document tracks suggestions for making the site look modern, sleek, and world-class, along with their implementation status.
 
 ## Suggestions & Status
