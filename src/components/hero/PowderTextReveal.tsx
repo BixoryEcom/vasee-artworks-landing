@@ -35,17 +35,18 @@ const PowderTextReveal: React.FC<PowderTextRevealProps> = ({ className = '' }) =
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  // tsparticles config for smokey/dusty effect
+  // tsparticles config for smokey/dusty effect with text mask
   const particlesOptions = {
     fullScreen: { enable: false },
     particles: {
-      number: { value: 120, density: { enable: true, value_area: 800 } },
+      number: { value: 180, density: { enable: true, value_area: 800 } },
       color: { value: "#fff" },
-      opacity: { value: 0.18, random: { enable: true, minimumValue: 0.08 } },
-      size: { value: 3, random: { enable: true, minimumValue: 1 } },
+      opacity: { value: 0.22, random: { enable: true, minimumValue: 0.08 } },
+      size: { value: 2.5, random: { enable: true, minimumValue: 1 } },
       move: {
         enable: true,
-        speed: 1.2,
+        speed: 1.5,
+        direction: "none",
         outModes: { default: 'out' } as const,
         random: true,
         straight: false,
@@ -59,6 +60,15 @@ const PowderTextReveal: React.FC<PowderTextRevealProps> = ({ className = '' }) =
     },
     detectRetina: true,
     background: { color: "transparent" },
+    polygon: {
+      enable: true,
+      type: "inline",
+      move: { radius: 10 },
+      url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='120' viewBox='0 0 600 120'%3E%3Ctext x='50%' y='50%' text-anchor='middle' dominant-baseline='middle' font-family='Maison Neue, Arial, sans-serif' font-size='64' font-weight='bold' fill='white'%3EVasee Art%3C/text%3E%3C/svg%3E",
+      scale: 1,
+      inline: { arrangement: "equidistant" },
+      draw: { enable: false },
+    },
   };
 
   return (
