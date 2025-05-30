@@ -21,6 +21,13 @@ const Hero = () => {
       opacity: [0, 1],
       transition: { duration: 2 }
     });
+    // Try to force video autoplay on mobile
+    if (videoRef.current && videoRef.current.muted) {
+      const playPromise = videoRef.current.play();
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise.catch(() => {/* ignore errors */});
+      }
+    }
   }, [controls]);
 
   // Handle video end to switch to next video
