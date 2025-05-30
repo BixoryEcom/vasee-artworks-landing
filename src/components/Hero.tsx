@@ -5,6 +5,7 @@ import AnimatedLightOrbs from "./hero/AnimatedLightOrbs";
 import HeroLogo from "./hero/HeroLogo";
 import HeroBanner from "./hero/HeroBanner";
 import HeroContent from "./hero/HeroContent";
+import PowderTextReveal from "./hero/PowderTextReveal";
 
 const videoSources = ["/hero-bg.mp4", "/hero-bg2.mp4"];
 
@@ -94,27 +95,8 @@ const Hero = () => {
           <HeroLogo />
         </div>
         {/* Brand name below the logo, large and prominent */}
-        <div className="w-full flex justify-center mt-2 mb-2">
-          <motion.div
-            className="font-maison tracking-widest text-5xl md:text-7xl lg:text-8xl font-bold uppercase relative overflow-hidden text-center gradient-text vasee-glow animate-fade-in-up"
-            initial={{ opacity: 0, y: -40 }}
-            animate={{ opacity: 1, y: 0, backgroundPosition: ['0% 0', '100% 0', '0% 0'] }}
-            transition={{ duration: 2, delay: 0.1, backgroundPosition: { duration: 8, repeat: Infinity, ease: 'linear' } }}
-          >
-            VASEE ART
-            {/* Animated gradient shine overlay */}
-            <motion.div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: 'linear-gradient(120deg, transparent 0%, #fff8 40%, transparent 60%)',
-                WebkitMaskImage: 'linear-gradient(120deg, transparent 0%, #fff 40%, transparent 60%)',
-                opacity: 0.18
-              }}
-              initial={{ x: '-100%' }}
-              animate={{ x: ['-100%', '100%'] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: 'linear', delay: 0.5 }}
-            />
-          </motion.div>
+        <div className="w-full flex justify-center mt-2 mb-2 relative">
+          <PowderTextReveal className="font-maison tracking-widest text-6xl md:text-8xl lg:text-9xl font-bold uppercase relative overflow-hidden text-center gradient-text vasee-glow animate-fade-in-up" />
         </div>
         {/* Content in the middle */}
         <div className="relative z-20 mb-0">
