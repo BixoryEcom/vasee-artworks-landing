@@ -1,4 +1,3 @@
-
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -18,8 +17,8 @@ const TeaseSection = () => {
   const glow = useTransform(scrollYProgress, [0.3, 0.5], [0, 30]);
   const rotate = useTransform(scrollYProgress, [0.3, 0.6], [0, 5]);
   
-  // Video URL - assuming the video is uploaded to public folder
-  const videoUrl = "/vasee-brand-story-video-1.mp4";
+  // Video URL - updated to use vasee-brand-story-video-2.mp4
+  const videoUrl = "/vasee-brand-story-video-2.mp4";
   const fallbackImageUrl = "https://images.pexels.com/photos/1145720/pexels-photo-1145720.jpeg?auto=compress&cs=tinysrgb&w=800";
 
   // Intersection Observer for video autoplay
