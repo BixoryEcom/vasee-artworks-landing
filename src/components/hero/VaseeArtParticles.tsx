@@ -1,6 +1,6 @@
+
 import React, { useRef, useEffect, useState } from "react";
 import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
 
 const TEXT = "Vasee Art";
 const FONT_FAMILY = "Maison Neue, Inter, Arial, sans-serif";
@@ -45,8 +45,8 @@ const VaseeArtParticles: React.FC = () => {
       move: {
         enable: true,
         speed: 1.2,
-        direction: "none",
-        outModes: { default: "out" },
+        direction: "none" as const,
+        outModes: { default: "out" as const },
         random: true,
         straight: false,
       },
@@ -75,7 +75,6 @@ const VaseeArtParticles: React.FC = () => {
       {/* Particles overlay */}
       <Particles
         id="tsparticles-vaseeart"
-        init={loadFull}
         options={particlesOptions}
         style={{
           position: "absolute",
@@ -119,4 +118,4 @@ const VaseeArtParticles: React.FC = () => {
   );
 };
 
-export default VaseeArtParticles; 
+export default VaseeArtParticles;

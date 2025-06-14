@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Particles from "react-tsparticles";
 
@@ -46,8 +47,8 @@ const PowderTextReveal: React.FC<PowderTextRevealProps> = ({ className = '' }) =
       move: {
         enable: true,
         speed: 1.5,
-        direction: "none",
-        outModes: { default: 'out' } as const,
+        direction: "none" as const,
+        outModes: { default: 'out' as const },
         random: true,
         straight: false,
       },
@@ -158,4 +159,4 @@ const PowderTextReveal: React.FC<PowderTextRevealProps> = ({ className = '' }) =
   );
 };
 
-export default PowderTextReveal; 
+export default PowderTextReveal;
