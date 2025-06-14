@@ -1,9 +1,12 @@
-import React, { useRef, useState } from "react";
+
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const TeaseSection = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -15,9 +18,32 @@ const TeaseSection = () => {
   const glow = useTransform(scrollYProgress, [0.3, 0.5], [0, 30]);
   const rotate = useTransform(scrollYProgress, [0.3, 0.6], [0, 5]);
   
-  // More reliable image URL with fallback
-  const imageUrl = "https://images.pexels.com/photos/1145720/pexels-photo-1145720.jpeg?auto=compress&cs=tinysrgb&w=800";
-  const fallbackUrl = "https://images.pexels.com/photos/3651820/pexels-photo-3651820.jpeg?auto=compress&cs=tinysrgb&w=800";
+  // Video URL - assuming the video is uploaded to public folder
+  const videoUrl = "/vasee-brand-story-video-1.mp4";
+  const fallbackImageUrl = "https://images.pexels.com/photos/1145720/pexels-photo-1145720.jpeg?auto=compress&cs=tinysrgb&w=800";
+
+  // Intersection Observer for video autoplay
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting && videoRef.current) {
+          videoRef.current.play().catch(() => {
+            // Autoplay failed, video will remain paused
+          });
+        } else if (videoRef.current) {
+          videoRef.current.pause();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
   
   return (
     <section ref={ref} className="relative min-h-[300px] md:h-[50vh] bg-vasee-dark flex items-center justify-center overflow-hidden py-16 md:py-24 lg:py-32">
@@ -31,23 +57,39 @@ const TeaseSection = () => {
           filter: `blur(${glow}px)`,
           rotate,
         }}
-        className="absolute w-[300px] h-[300px] md:w-[400px] md:h-[400px] animate-glow-pulse"
+        className="absolute w-[300px] h-[300px] md:w-[400px] md:h-[400px] animate-glow-pulse rounded-full overflow-hidden"
       >
-        {!imageLoaded && (
+        {!videoLoaded && (
           <div className="w-full h-full flex items-center justify-center">
             <div className="w-20 h-20 rounded-full border-t-2 border-b-2 border-white animate-spin"></div>
           </div>
         )}
-        <img 
-          src={imageUrl}
-          alt="Glowing Vasee silhouette" 
-          className={`w-full h-full object-contain opacity-50 transition-opacity duration-500 ${imageLoaded ? 'opacity-50' : 'opacity-0'}`}
-          onLoad={() => setImageLoaded(true)}
-          onError={(e) => {
-            // If primary image fails, try fallback
-            (e.target as HTMLImageElement).src = fallbackUrl;
+        
+        <video
+          ref={videoRef}
+          className={`w-full h-full object-cover opacity-50 transition-opacity duration-500 ${videoLoaded ? 'opacity-50' : 'opacity-0'}`}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          onLoadedData={() => setVideoLoaded(true)}
+          onError={() => {
+            // Fallback to image if video fails
+            setVideoLoaded(false);
           }}
-        />
+        >
+          <source src={videoUrl} type="video/mp4" />
+        </video>
+
+        {/* Fallback image if video fails */}
+        {!videoLoaded && (
+          <img 
+            src={fallbackImageUrl}
+            alt="Glowing Vasee silhouette" 
+            className="w-full h-full object-cover opacity-50"
+            style={{ display: videoLoaded ? 'none' : 'block' }}
+          />
+        )}
       </motion.div>
       
       <motion.div
