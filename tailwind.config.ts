@@ -20,8 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-				maison: ['Maison Neue', 'sans-serif'],
+				sans: ['Inter', 'Playfair Display', 'Georgia', 'Times New Roman', 'serif'],
+				maison: ['Maison Neue', 'Playfair Display', 'Georgia', 'Times New Roman', 'serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

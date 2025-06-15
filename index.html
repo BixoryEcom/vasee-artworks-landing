@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,9 +23,20 @@
     <meta name="twitter:site" content="@vasee_art" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
+    <!-- Font Preloading and Loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/visualsudio/fonts/MaisonNeue-Book.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/visualsudio/fonts/MaisonNeue-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Google Fonts with display=swap for better loading -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Add Playfair Display as a premium fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
 
   <body>

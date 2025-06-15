@@ -38,31 +38,7 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border selection:bg-white/10 selection:text-white;
-  }
-  
-  body {
-    @apply bg-background text-foreground antialiased overflow-x-hidden;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
-    font-family: 'Inter', 'Maison Neue', Arial, sans-serif;
-  }
-
-  html {
-    @apply scroll-smooth;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Maison Neue', 'Inter', Arial, sans-serif;
-  }
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
+/* Improved font loading with better fallbacks */
 @font-face {
   font-family: 'Maison Neue';
   src: url('https://cdn.jsdelivr.net/gh/visualsudio/fonts/MaisonNeue-Book.woff2') format('woff2');
@@ -77,6 +53,34 @@ html, body {
   font-weight: 700;
   font-style: normal;
   font-display: swap;
+}
+
+@layer base {
+  * {
+    @apply border-border selection:bg-white/10 selection:text-white;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased overflow-x-hidden;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    /* Improved font stack with better fallbacks */
+    font-family: 'Inter', 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  /* Enhanced heading font stack */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Maison Neue', 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+    font-weight: 400;
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
 .video-bg-fallback {
@@ -231,18 +235,27 @@ html, body {
 @media (max-width: 768px) {
   body {
     @apply p-0;
+    /* Ensure consistent font rendering on mobile */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+  
+  /* Enhanced mobile font sizing */
   h1 {
     @apply text-3xl;
+    font-family: 'Maison Neue', 'Playfair Display', 'Georgia', serif;
   }
   h2 {
     @apply text-2xl;
+    font-family: 'Maison Neue', 'Playfair Display', 'Georgia', serif;
   }
   h3 {
     @apply text-xl;
+    font-family: 'Maison Neue', 'Playfair Display', 'Georgia', serif;
   }
   p {
     @apply text-base;
+    font-family: 'Inter', 'Playfair Display', 'Georgia', serif;
   }
   section.relative.w-full.h-screen.overflow-hidden {
     width: 100vw !important;
