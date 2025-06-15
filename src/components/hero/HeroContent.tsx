@@ -7,22 +7,40 @@ const StickyNav = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show nav after scrolling 80vh
-      setShow(window.scrollY > window.innerHeight * 0.8);
+      // Show nav after scrolling past the hero section (100vh)
+      // Add a small buffer to prevent flickering
+      const shouldShow = window.scrollY > window.innerHeight - 100;
+      setShow(shouldShow);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    // Add throttling to improve performance
+    let ticking = false;
+    const throttledScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", throttledScroll);
+    return () => window.removeEventListener("scroll", throttledScroll);
   }, []);
 
   return (
     <motion.nav
       initial={{ y: -60, opacity: 0 }}
       animate={show ? { y: 0, opacity: 1 } : { y: -60, opacity: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className="fixed top-0 left-0 w-full z-50 bg-vasee-dark/80 backdrop-blur-lg border-b border-white/10 shadow-lg flex items-center justify-between px-4 md:px-12 py-2 md:py-3"
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="fixed top-0 left-0 w-full z-50 bg-vasee-dark/90 backdrop-blur-lg border-b border-white/10 shadow-lg flex items-center justify-between px-4 md:px-12 py-2 md:py-3"
       role="navigation"
       aria-label="Sticky navigation"
-      style={{ pointerEvents: show ? "auto" : "none" }}
+      style={{ 
+        pointerEvents: show ? "auto" : "none",
+        visibility: show ? "visible" : "hidden"
+      }}
     >
       <a href="#" className="flex items-center gap-2 font-maison text-lg text-white font-bold tracking-widest">
         <img src="/lovable-uploads/fb253245-2a05-45a2-9954-4724b7319a22.png" alt="Vasee Logo" className="h-8 w-8 object-contain" />
