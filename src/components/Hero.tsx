@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import { useAnimation, motion } from "framer-motion";
 import FloatingParticles from "./hero/FloatingParticles";
@@ -42,15 +43,15 @@ const Hero = () => {
   }, [currentVideo]);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 z-0 h-full w-full">
+    <section className="fixed top-0 left-0 w-full h-screen overflow-hidden z-0">
+      {/* Animated Background - Absolutely positioned to ensure flush positioning */}
+      <div className="absolute top-0 left-0 w-full h-full">
         <video
           ref={videoRef}
           autoPlay
           loop={false}
           playsInline
-          className="w-full h-full object-cover"
+          className="absolute top-0 left-0 w-full h-full object-cover"
           onEnded={handleVideoEnded}
           muted={isMuted}
         >
@@ -58,7 +59,8 @@ const Hero = () => {
           Your browser does not support the video tag.
         </video>
       </div>
-      {/* Mute/Unmute Button - moved outside video container */}
+      
+      {/* Mute/Unmute Button */}
       <button
         onClick={() => {
           if (videoRef.current) {
@@ -73,12 +75,10 @@ const Hero = () => {
         aria-label={isMuted ? 'Unmute video' : 'Mute video'}
       >
         {isMuted ? (
-          // Muted icon (simple SVG)
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l6 6m0-6l-6 6M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         ) : (
-          // Unmuted icon (simple SVG)
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
@@ -114,28 +114,6 @@ const Hero = () => {
           <HeroBanner />
         </div>
       </div>
-
-      {/* Responsive Design */}
-      <style>{`
-        @media (max-width: 768px) {
-          .h-screen {
-            height: 100vh;
-          }
-          .py-8 {
-            padding-top: 2rem;
-            padding-bottom: 2rem;
-          }
-          .text-4xl {
-            font-size: 2.25rem;
-          }
-          .md\\:text-6xl {
-            font-size: 3.75rem;
-          }
-          .lg\\:text-7xl {
-            font-size: 4.5rem;
-          }
-        }
-      `}</style>
     </section>
   );
 };

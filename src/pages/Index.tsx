@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import Hero from "@/components/Hero";
 import BrandEssence from "@/components/BrandEssence";
@@ -13,20 +14,24 @@ const Index = () => {
   useEffect(() => {
     // Set dark mode explicitly
     document.documentElement.classList.add('dark');
-    // Removed body background color to prevent dark space above hero
   }, []);
 
   return (
-    <div className="text-white min-h-screen flex flex-col">
+    <div className="text-white min-h-screen">
+      {/* Fixed Hero section that covers the entire viewport */}
       <Hero />
-      <ScrollIndicator />
-      <BrandEssence />
-      <ProductShowcase />
-      <ArtistSection />
-      <MoodGallery />
-      <SocialProof />
-      <TeaseSection />
-      <Footer />
+      
+      {/* Content sections with top margin to account for fixed hero */}
+      <div className="relative z-10" style={{ marginTop: '100vh' }}>
+        <ScrollIndicator />
+        <BrandEssence />
+        <ProductShowcase />
+        <ArtistSection />
+        <MoodGallery />
+        <SocialProof />
+        <TeaseSection />
+        <Footer />
+      </div>
     </div>
   );
 };
