@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Instagram, Twitter } from "lucide-react";
@@ -7,8 +8,11 @@ const StickyNav = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show nav after scrolling past most of the hero section (80vh)
-      const shouldShow = window.scrollY > window.innerHeight * 0.8;
+      // Use a fixed pixel value that works better on mobile
+      // Mobile viewports are typically shorter, so use 600px as a reliable threshold
+      const isMobile = window.innerWidth < 768;
+      const threshold = isMobile ? 500 : window.innerHeight * 0.8;
+      const shouldShow = window.scrollY > threshold;
       setShow(shouldShow);
     };
 
@@ -24,8 +28,15 @@ const StickyNav = () => {
       }
     };
 
+    // Initial check
+    handleScroll();
+    
     window.addEventListener("scroll", throttledScroll);
-    return () => window.removeEventListener("scroll", throttledScroll);
+    window.addEventListener("resize", handleScroll); // Handle orientation changes
+    return () => {
+      window.removeEventListener("scroll", throttledScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   return (
@@ -48,20 +59,20 @@ const StickyNav = () => {
       <div className="flex items-center gap-2 md:gap-4">
         <a
           href="#emotional-glass-collection"
-          className="inline-flex items-center px-5 py-2 bg-vasee-vibrant/90 hover:bg-vasee-vibrant text-white font-maison rounded-full shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-vasee-vibrant"
+          className="inline-flex items-center px-3 md:px-5 py-2 bg-vasee-vibrant/90 hover:bg-vasee-vibrant text-white font-maison rounded-full shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-vasee-vibrant text-sm md:text-base"
           onClick={e => {
             e.preventDefault();
             document.getElementById('emotional-glass-collection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }}
         >
           Get Your Vasee
-          <ArrowRight className="ml-2 h-5 w-5" />
+          <ArrowRight className="ml-1 md:ml-2 h-4 w-4 md:h-5 md:w-5" />
         </a>
         <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="ml-2 text-vasee-gray hover:text-vasee-vibrant transition-colors">
-          <Twitter className="h-6 w-6" />
+          <Twitter className="h-5 w-5 md:h-6 md:w-6" />
         </a>
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="ml-2 text-vasee-gray hover:text-vasee-vibrant transition-colors">
-          <Instagram className="h-6 w-6" />
+          <Instagram className="h-5 w-5 md:h-6 md:w-6" />
         </a>
       </div>
     </motion.nav>
