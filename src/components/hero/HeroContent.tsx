@@ -1,5 +1,4 @@
 
-
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Instagram, Twitter } from "lucide-react";
@@ -55,18 +54,20 @@ const StickyNav = () => {
   // Debug logging for render state
   console.log('StickyNav render:', { show });
 
+  // Don't render at all when hidden to avoid iOS Safari issues
+  if (!show) {
+    return null;
+  }
+
   return (
     <motion.nav
       initial={{ y: -60, opacity: 0 }}
-      animate={show ? { y: 0, opacity: 1 } : { y: -60, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -60, opacity: 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="fixed top-0 left-0 w-full z-50 bg-vasee-dark/90 backdrop-blur-lg border-b border-white/10 shadow-lg flex items-center justify-between px-4 md:px-12 py-2 md:py-3"
       role="navigation"
       aria-label="Sticky navigation"
-      style={{ 
-        pointerEvents: show ? "auto" : "none",
-        visibility: show ? "visible" : "hidden"
-      }}
     >
       <a href="#" className="flex items-center gap-2 font-maison text-lg text-white font-bold tracking-widest">
         <img src="/lovable-uploads/fb253245-2a05-45a2-9954-4724b7319a22.png" alt="Vasee Logo" className="h-8 w-8 object-contain" />
