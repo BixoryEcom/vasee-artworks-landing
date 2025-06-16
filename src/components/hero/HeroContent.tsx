@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Instagram, Twitter } from "lucide-react";
@@ -8,23 +7,8 @@ const StickyNav = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Use a fixed pixel value that works better on mobile
-      // Mobile viewports are typically shorter, so use 600px as a reliable threshold
-      const isMobile = window.innerWidth < 768;
-      const threshold = isMobile ? 500 : window.innerHeight * 0.8;
-      const shouldShow = window.scrollY > threshold;
-      
-      // Debug logging for mobile
-      if (isMobile) {
-        console.log('Mobile scroll debug:', {
-          scrollY: window.scrollY,
-          threshold,
-          shouldShow,
-          windowHeight: window.innerHeight,
-          windowWidth: window.innerWidth
-        });
-      }
-      
+      // Show nav after scrolling past most of the hero section (80vh)
+      const shouldShow = window.scrollY > window.innerHeight * 0.8;
       setShow(shouldShow);
     };
 
@@ -40,34 +24,22 @@ const StickyNav = () => {
       }
     };
 
-    // Initial check
-    handleScroll();
-    
     window.addEventListener("scroll", throttledScroll);
-    window.addEventListener("resize", handleScroll); // Handle orientation changes
-    return () => {
-      window.removeEventListener("scroll", throttledScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", throttledScroll);
   }, []);
-
-  // Debug logging for render state
-  console.log('StickyNav render:', { show });
-
-  // Don't render at all when hidden to avoid iOS Safari issues
-  if (!show) {
-    return null;
-  }
 
   return (
     <motion.nav
       initial={{ y: -60, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -60, opacity: 0 }}
+      animate={show ? { y: 0, opacity: 1 } : { y: -60, opacity: 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="fixed top-0 left-0 w-full z-50 bg-vasee-dark/90 backdrop-blur-lg border-b border-white/10 shadow-lg flex items-center justify-between px-4 md:px-12 py-2 md:py-3"
       role="navigation"
       aria-label="Sticky navigation"
+      style={{ 
+        pointerEvents: show ? "auto" : "none",
+        visibility: show ? "visible" : "hidden"
+      }}
     >
       <a href="#" className="flex items-center gap-2 font-maison text-lg text-white font-bold tracking-widest">
         <img src="/lovable-uploads/fb253245-2a05-45a2-9954-4724b7319a22.png" alt="Vasee Logo" className="h-8 w-8 object-contain" />
@@ -76,20 +48,20 @@ const StickyNav = () => {
       <div className="flex items-center gap-2 md:gap-4">
         <a
           href="#emotional-glass-collection"
-          className="inline-flex items-center px-3 md:px-5 py-2 bg-vasee-vibrant/90 hover:bg-vasee-vibrant text-white font-maison rounded-full shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-vasee-vibrant text-sm md:text-base"
+          className="inline-flex items-center px-5 py-2 bg-vasee-vibrant/90 hover:bg-vasee-vibrant text-white font-maison rounded-full shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-vasee-vibrant"
           onClick={e => {
             e.preventDefault();
             document.getElementById('emotional-glass-collection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }}
         >
           Get Your Vasee
-          <ArrowRight className="ml-1 md:ml-2 h-4 w-4 md:h-5 md:w-5" />
+          <ArrowRight className="ml-2 h-5 w-5" />
         </a>
         <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="ml-2 text-vasee-gray hover:text-vasee-vibrant transition-colors">
-          <Twitter className="h-5 w-5 md:h-6 md:w-6" />
+          <Twitter className="h-6 w-6" />
         </a>
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="ml-2 text-vasee-gray hover:text-vasee-vibrant transition-colors">
-          <Instagram className="h-5 w-5 md:h-6 md:w-6" />
+          <Instagram className="h-6 w-6" />
         </a>
       </div>
     </motion.nav>

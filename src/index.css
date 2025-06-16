@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 @tailwind base;
@@ -38,14 +39,13 @@
   }
 }
 
-/* Updated font loading with reliable fallbacks */
+/* Improved font loading with better fallbacks */
 @font-face {
   font-family: 'Maison Neue';
   src: url('https://cdn.jsdelivr.net/gh/visualsudio/fonts/MaisonNeue-Book.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  /* This will gracefully fallback if CDN fails */
 }
 
 @font-face {
@@ -54,7 +54,6 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  /* This will gracefully fallback if CDN fails */
 }
 
 @layer base {
@@ -72,17 +71,17 @@
   body {
     @apply bg-background text-foreground antialiased overflow-x-hidden;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
-    /* Improved font stack with reliable fallbacks that will always work */
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    /* Improved font stack with better fallbacks */
+    font-family: 'Inter', 'Playfair Display', 'Georgia', 'Times New Roman', serif;
   }
 
   html {
     @apply scroll-smooth;
   }
 
-  /* Enhanced heading font stack with better fallbacks */
+  /* Enhanced heading font stack */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Maison Neue', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-family: 'Maison Neue', 'Playfair Display', 'Georgia', 'Times New Roman', serif;
     font-weight: 400;
   }
   
@@ -255,19 +254,19 @@
   /* Enhanced mobile font sizing */
   h1 {
     @apply text-3xl;
-    font-family: 'Maison Neue', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Maison Neue', 'Playfair Display', 'Georgia', serif;
   }
   h2 {
     @apply text-2xl;
-    font-family: 'Maison Neue', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Maison Neue', 'Playfair Display', 'Georgia', serif;
   }
   h3 {
     @apply text-xl;
-    font-family: 'Maison Neue', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Maison Neue', 'Playfair Display', 'Georgia', serif;
   }
   p {
     @apply text-base;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', 'Playfair Display', 'Georgia', serif;
   }
   
   /* Ensure video is always flush on mobile */
