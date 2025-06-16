@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Instagram, Twitter } from "lucide-react";
@@ -8,8 +7,8 @@ const StickyNav = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show nav after scrolling down 200px from the top
-      const shouldShow = window.scrollY > 200;
+      // Show nav after scrolling past most of the hero section (80vh)
+      const shouldShow = window.scrollY > window.innerHeight * 0.8;
       setShow(shouldShow);
     };
 

@@ -18,11 +18,11 @@ const Index = () => {
 
   return (
     <div className="text-white min-h-screen">
-      {/* Fixed Hero section that covers the entire viewport */}
+      {/* Hero section that takes full viewport height */}
       <Hero />
       
-      {/* Content sections with top margin to account for fixed hero */}
-      <div className="relative z-10" style={{ marginTop: '100vh' }}>
+      {/* Content sections that follow normally */}
+      <div className="relative z-10">
         <ScrollIndicator />
         <BrandEssence />
         <ProductShowcase />

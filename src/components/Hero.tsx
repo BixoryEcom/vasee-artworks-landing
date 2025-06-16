@@ -43,7 +43,7 @@ const Hero = () => {
   }, [currentVideo]);
 
   return (
-    <section className="fixed top-0 left-0 w-full h-screen overflow-hidden z-0">
+    <section className="relative w-full h-screen overflow-hidden">
       {/* Animated Background - Absolutely positioned to ensure flush positioning */}
       <div className="absolute top-0 left-0 w-full h-full">
         <video
