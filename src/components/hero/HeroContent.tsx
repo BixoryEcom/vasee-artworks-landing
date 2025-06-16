@@ -1,4 +1,5 @@
 
+
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Instagram, Twitter } from "lucide-react";
@@ -13,6 +14,18 @@ const StickyNav = () => {
       const isMobile = window.innerWidth < 768;
       const threshold = isMobile ? 500 : window.innerHeight * 0.8;
       const shouldShow = window.scrollY > threshold;
+      
+      // Debug logging for mobile
+      if (isMobile) {
+        console.log('Mobile scroll debug:', {
+          scrollY: window.scrollY,
+          threshold,
+          shouldShow,
+          windowHeight: window.innerHeight,
+          windowWidth: window.innerWidth
+        });
+      }
+      
       setShow(shouldShow);
     };
 
@@ -38,6 +51,9 @@ const StickyNav = () => {
       window.removeEventListener("resize", handleScroll);
     };
   }, []);
+
+  // Debug logging for render state
+  console.log('StickyNav render:', { show });
 
   return (
     <motion.nav
