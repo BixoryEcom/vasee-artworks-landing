@@ -20,8 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'Playfair Display', 'Georgia', 'Times New Roman', 'serif'],
-				maison: ['Maison Neue', 'Playfair Display', 'Georgia', 'Times New Roman', 'serif'],
+				sans: ['Inter', system-ui, -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', sans-serif],
+				maison: ['Maison Neue', 'Inter', system-ui, -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', sans-serif],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
