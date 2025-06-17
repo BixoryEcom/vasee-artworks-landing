@@ -95,8 +95,8 @@ const Hero = () => {
         <AnimatedLightOrbs />
       </div>
 
-      {/* Main hero content container - optimized vertical spacing */}
-      <div className="relative z-20 w-full h-full flex flex-col justify-center items-center px-4">
+      {/* Main hero content container - moved down slightly */}
+      <div className="relative z-20 w-full h-full flex flex-col justify-center items-center px-4 pt-16 md:pt-20">
         {/* Brand name - increased size for more prominence */}
         <div className="w-full flex justify-center mb-3 md:mb-6 relative">
           <PowderTextReveal className="font-maison tracking-widest text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold uppercase relative overflow-hidden text-center gradient-text vasee-glow animate-fade-in-up" />
