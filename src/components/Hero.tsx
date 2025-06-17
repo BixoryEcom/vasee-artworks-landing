@@ -97,9 +97,9 @@ const Hero = () => {
 
       {/* Main hero content container - optimized vertical spacing */}
       <div className="relative z-20 w-full h-full flex flex-col justify-center items-center px-4">
-        {/* Brand name - reduced size for better fit */}
-        <div className="w-full flex justify-center mb-2 md:mb-4 relative">
-          <PowderTextReveal className="font-maison tracking-widest text-4xl md:text-6xl lg:text-7xl font-bold uppercase relative overflow-hidden text-center gradient-text vasee-glow animate-fade-in-up" />
+        {/* Brand name - increased size for more prominence */}
+        <div className="w-full flex justify-center mb-3 md:mb-6 relative">
+          <PowderTextReveal className="font-maison tracking-widest text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold uppercase relative overflow-hidden text-center gradient-text vasee-glow animate-fade-in-up" />
         </div>
         
         {/* Icon (logo) - reduced size */}
