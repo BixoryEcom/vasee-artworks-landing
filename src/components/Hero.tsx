@@ -97,13 +97,13 @@ const Hero = () => {
 
       {/* Main hero content container - centered layout, extra padding */}
       <div className="relative z-20 w-full h-full flex flex-col justify-between items-center">
-        {/* Icon (logo) above the brand name */}
-        <div className="relative z-20 mt-4">
-          <HeroLogo />
-        </div>
-        {/* Brand name below the logo, large and prominent */}
-        <div className="w-full flex justify-center mt-2 mb-2 relative">
+        {/* Brand name at the top, large and prominent */}
+        <div className="w-full flex justify-center mt-8 mb-2 relative">
           <PowderTextReveal className="font-maison tracking-widest text-6xl md:text-8xl lg:text-9xl font-bold uppercase relative overflow-hidden text-center gradient-text vasee-glow animate-fade-in-up" />
+        </div>
+        {/* Icon (logo) below the brand name */}
+        <div className="relative z-20 mt-2">
+          <HeroLogo />
         </div>
         {/* Content in the middle */}
         <div className="relative z-20 mb-0">
