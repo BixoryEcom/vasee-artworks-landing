@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -37,11 +38,11 @@ const Logo = ({ className = '' }: { className?: string }) => {
         transition={{ type: "spring", stiffness: 300, damping: 10 }}
         className="relative"
       >
-        {/* Logo image with larger size and enhanced illumination */}
+        {/* Logo image with responsive sizing */}
         <motion.img 
           src="/lovable-uploads/fb253245-2a05-45a2-9954-4724b7319a22.png" 
           alt="VASEE ART Logo" 
-          className="h-40 w-40 md:h-48 md:w-48 object-contain logo-glow"
+          className="h-24 w-24 md:h-32 md:w-32 lg:h-40 lg:w-40 object-contain logo-glow"
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={{ 
             opacity: 1, 
